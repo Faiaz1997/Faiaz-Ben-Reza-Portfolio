@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faiaz Ben Reza</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <div class="logo">Faiaz Ben Reza</div>
+        <div class="nav-container">
+          <div class="link" id="link">
+            <ul>
+              <li><a href="#">Home</a>
+                <li><a href="#about">About</a></li>
+              <li><a href="#experience">Experiences</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <button class="ham" id="ham">
+            <img src="hamburger.png" alt="" />
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="hero">
+        <div class="code-img">
+          <img src="19362653.jpg" alt="" />
+        </div>
+        <div class="desc">
+          <p>
+            I am seeking a rewarding career as a Software Engineer in a
+            reputable organization that will allow me to expand and apply my
+            learning, skills, and knowledge. Have excellent communication skills
+            and a keen eye for detail. Flexible enough to work in any
+            environment as needed.
+          </p>
+        </div>
+      </div>
+      <div class="about" id="about">
+        <div class="personal-summery" id="personal-summery">
+          <h1>Personal Summery</h1>
+          <ul>
+            <li><p>- Excellent Problem Solving Ability</p></li>
+            <li><p>- Quick Learner</p></li>
+            <li>
+              <p>- Responsible, dependable, self-directed,and self-motivated</p>
+            </li>
+            <li><p>- Hardworking, punctual, and a good team player</p></li>
+          </ul>
+        </div>
+        <div class="skills" id="skills">
+          <h1>Skills</h1>
+          <ul>
+            <li>
+              <h4>Web</h4>
+              <p>- HTML, CSS, JavaScript, WordPress, PHP, Laravel</p>
+            </li>
+            <li>
+              <h4>Computer Skills</h4>
+              <p>- MS Office, Google Drive, Spreadsheets, Email</p>
+            </li>
+            <li>
+              <h4>Operating System</h4>
+              <p>- Windows</p>
+            </li>
+            <li>
+              <h4>Database Management Systems</h4>
+              <p>- Oracle, MySQL</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="experience" id="experience">
+        <div class="work-experience" id="work-experience">
+          <h1>Work Experience</h1>
+          <ul>
+            <li>
+              <h4>OFFICE ASSISTANT
+              </h4>
+              <h5>American International University - Bangladesh |
+                Jan 2022 - April 2022
+                </h5>
+              <p>- I completed an internship as an Office Assistant at
+                American International University-Bangladesh, where I
+                assisted the Computer Science Department with
+                departmental administration.
+                </p>
+            </li>
+          </ul>
+        </div>
+        <div class="extra-curricular" id="extra-curricular">
+          <h1>Extra-Curricular</h1>
+          <h4>ASSISTANT GENERAL SECRETARY - EVENT
+            COVERAGE AND POST PRODUCTION
+            </h4>
+          <h5>
+            AIUB Computer Club | May 2021 - Present
+          </h5>
+          <ul>
+              <p>1. Organized Jarvis 3.0 Intra ACC Carnival
+              </p>
+            </li>
+            <li>
+              <p>2. Organized 2nd International Conference on Computing
+                Advancements - ICCA 2022
+                </p>
+            </li>
+            <li>
+              <p>3. Organized Blockchain Olympiad Bangladesh 2022
+              </p>
+            </li>
+            <li>
+              <p>4. Volunteered at AIUB Cyber Gaming Fest 2019</p>
+            </li>
+            <li>
+              <p>5. Volunteered at the 2020 Cisco Networking Academy
+                National Skills Competition</p>
+            </li>
+            <li>
+              <p>6. Volunteered for HULT Prize at American International
+                University</p>
+            </li>
+          </ul>
+        </div>
+        <div class="projects" id="projects">
+          <h1>Projects</h1>
+          <ul>
+            <li>
+              <p><a href="">- Online Banking System using HTML, CSS, JS, PHP,
+                MySQL</a>
+              </p>
+            </li>
+            <li>
+              <p><a href="">- Crowd Funding System using HTML, CSS, JS, PHP
+                [LARAVEL], MySQL</a>
+                </p>
+            </li>
+            <li>
+              <p><a href="">- Online Shop using HTML, CSS, JS, PHP [LARAVEL],
+                MySQL</a>
+              </p>
+            </li>
+            <li>
+              <p><a href="">- Portfolio Website with WordPress</a></p>
+            </li>
+            <li>
+              <p><a href="">- Test Plan for the Automated Ticket Issuing System of
+                Dhaka Subway Systems</a></p>
+            </li>
+            <li>
+              <p><a href="">- Wrote and executed Test Cases for the AIUB system</a></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </main>
+    <footer></footer>
+
+    <script>
+      let ham = document.getElementById("ham");
+      let link = document.getElementById("link");
+
+      ham.addEventListener("click", function () {
+        link.classList.toggle("showmenu");
+      });
+    </script>
+  </body>
+</html>

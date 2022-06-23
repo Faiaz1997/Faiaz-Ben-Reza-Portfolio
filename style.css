@@ -1,0 +1,410 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;0,900;1,500&display=swap");
+
+:root {
+  --primary-color: #74b9ff;
+  --secondary-color: #0984e3;
+  --contrast-color: #2d3436;
+  --light-color: #ffffff;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* Genaral Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  
+}
+body {
+  font-family: "Poppins";
+}
+
+/* End Genaral Styles */
+
+/* Header */
+header {
+  width: 100%;
+}
+/* Nav */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  background-color: var(--contrast-color);
+  height: 10vh;
+  opacity: 0.8;
+}
+/* Logo */
+.logo {
+  color: #fff;
+  font-size: large;
+  text-transform: uppercase;
+  padding-left: 25px;
+}
+/* End Logo */
+
+/* Nav Link */
+
+.link ul li {
+  float: left;
+  padding: 8px;
+  text-decoration: none;
+  padding-right: 25px;
+}
+.link a {
+  color: var(--light-color);
+  cursor: pointer;
+}
+.link a:hover {
+  color: var(--primary-color);
+  transition: all 0.6s;
+}
+/* Nav Hamburger-Icon */
+.ham {
+  border: 0;
+  background: transparent;
+  color: var(--secondary-color);
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+}
+/* End Nav Hamburger-Icon */
+/* End Nav Link */
+/* End Nav */
+/* End Header */
+/* Main */
+/* Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--light-color);
+  padding: 10% 15% 10% 15%;
+}
+/* Hero-Description */
+.desc {
+  width: 75vw;
+  text-align: justify;
+  padding-left: 10vw;
+  font-size: 20px;
+}
+/* End Hero-Description */
+/* Hero Image */
+.code-img img {
+  width: 40vw;
+}
+/* End Hero-Image */
+/* End Hero */
+/* Personal Summery */
+.personal-summery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border: 2px ridge var(--contrast-color);
+  background-color: var(--contrast-color);
+  padding: 10% 15% 10% 15%;
+}
+.personal-summery h1 {
+  padding: 15px;
+  color: var(--light-color);
+}
+.personal-summery ul {
+  color: var(--light-color);
+}
+.personal-summery p {
+  padding: 15px;
+}
+/* End Personal Summery */
+/* Skills */
+.skills {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: var(--light-color);
+  padding: 10% 15% 10% 15%;
+}
+.skills h1 {
+  padding: 15px;
+  color: var(--contrast-color);
+}
+.skills ul {
+  color: var(--contrast-color);
+}
+.skills h4 {
+  padding: 15px;
+  color: var(--secondary-color);
+}
+.skills p {
+  padding: 15px;
+}
+/* End Skills */
+/* Work-Experience */
+.work-experience {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border: 2px ridge var(--contrast-color);
+  background-color: var(--contrast-color);
+  padding: 10% 15% 10% 15%;
+}
+.work-experience h1 {
+  padding: 15px;
+  color: var(--light-color);
+}
+.work-experience h4 {
+  padding: 15px;
+  color: var(--primary-color);
+}
+.work-experience h5 {
+  padding: 15px;
+  color: var(--light-color);
+}
+.work-experience ul {
+  color: var(--light-color);
+}
+.work-experience p {
+  padding: 15px;
+}
+/* End Work-Experience */
+/* Extra-Curricular */
+.extra-curricular {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: var(--light-color);
+  padding: 10% 15% 10% 15%;
+}
+.extra-curricular h1 {
+  padding: 15px;
+  color: var(--contrast-color);
+}
+.extra-curricular ul {
+  color: var(--contrast-color);
+}
+.extra-curricular h4 {
+  padding: 15px;
+  color: var(--secondary-color);
+}
+.extra-curricular h5 {
+  padding: 15px;
+  color: var(--contrast-color);
+}
+.extra-curricular p {
+  padding: 15px;
+}
+/* End Extra-Curricular */
+/* Projects */
+.projects {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border: 2px ridge var(--contrast-color);
+  background-color: var(--contrast-color);
+  padding: 10% 15% 10% 15%;
+}
+.projects h1 {
+  padding: 15px;
+  color: var(--light-color);
+}
+.work-experience ul {
+  color: var(--light-color);
+}
+.projects p {
+  padding: 15px;
+}
+.projects p a{
+  color: var(--light-color);
+}
+.projects p a:hover{
+  color: var(--primary-color);
+}
+/* End Work-Projects */
+
+/* End Main */
+
+@media screen and (max-width: 600px) {
+  /* Nav */
+  .nav {
+    position: fixed;
+    background-color: #fff;
+    height: 10vh;
+  }
+  .nav-container {
+    display: flex;
+  }
+  /* Logo */
+  .logo {
+    color: var(--contrast-color);
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  /* End Logo */
+  /* Nav-Link */
+  .link {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    transform: translateX(150%);
+    transition: all 0.5s;
+  }
+  .link ul {
+    background-color: var(--contrast-color);
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(140px);
+    border: 2px ridge var(--contrast-color);
+    padding-right: 150%;
+    border-radius: 25px;
+    font-size: 15px;
+  }
+  .link ul li {
+    transform: translateX(100%);
+  }
+  .link a {
+    transform: translateX(55px);
+    color: var(--light-color);
+    cursor: pointer;
+  }
+  /* Nav Hamburger-Icon */
+  .ham {
+    border: none;
+    background: transparent;
+    color: var(--secondary-color);
+    font-size: 20px;
+    cursor: pointer;
+    display: block;
+    transform: translateX(-15px);
+  }
+  .ham img {
+    width: 25px;
+  }
+  .showmenu {
+    transform: translateX(0);
+    transition: all 0.5s;
+  }
+  /* End Nav Hamburger-Icon */
+  /* End Nav-Link */
+  /* End Nav */
+  /* Main */
+  main {
+    display: block;
+  }
+  /* Hero */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; 
+    padding: 15% 15% 10% 15%;
+  }
+  /* Hero-Description */
+  .desc {
+    padding: 10% 15% 10% 15%;
+    text-align: justify;
+    font-size: 14px;
+  }
+  /* End Hero-Description */
+  /* Hero-Image */
+  .code-img img {
+    width: 250px;
+  }
+  /* End Hero-Image */
+  /* End Hero */
+  /* Personal Summery */
+  .personal-summery {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .personal-summery h1 {
+    font-size: 26px;
+  }
+  .personal-summery p {
+    font-size: 14px;
+  }
+  /* End Personal Summery*/
+  /* Skills */
+  .skills {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .skills h1 {
+    font-size: 26px;
+  }
+  .skills h4 {
+    font-size: 16px;
+  }
+  .skills p {
+    font-size: 14px;
+  }
+  /* End Skills */
+  /* Work-Experience */
+  .work-experience {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .work-experience h1 {
+    font-size: 26px;
+  }
+  .work-experience h4 {
+    font-size: 16px;
+  }
+  .work-experience h5 {
+    font-size: 15px;
+  }
+  .work-experience p {
+    font-size: 14px;
+  }
+  /* End Work-Experience*/
+  /* Extra-Curricular */
+  .extra-curricular {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .extra-curricular h1 {
+    font-size: 26px;
+  }
+  .extra-curricular h4 {
+    font-size: 16px;
+  }
+  .extra-curricular h5 {
+    font-size: 15px;
+  }
+  .extra-curricular p {
+    font-size: 14px;
+  }
+  /* End Extra-Curricular */
+    /* Projects */
+    .projects {
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+    }
+    .projects h1 {
+      font-size: 26px;
+    }
+    .projects p {
+      font-size: 14px;
+    }
+    /* End Projects */
+  /* End Main */
+}
