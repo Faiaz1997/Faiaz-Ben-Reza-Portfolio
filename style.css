@@ -20,13 +20,14 @@ body {
   font-family: "Poppins";
 }
 html {
-  scroll-behavior: smooth;
+  scroll-behavior:smooth;
   transition: all 0.4s;
 }
 .glow-border{
   border: 1px ridge var(--primary-color);
   box-shadow: 2px 2px 5px var(--primary-color);
   margin: 10px;
+  transition: all 0.4s;
 }
 .center{
   justify-content: center;
@@ -49,8 +50,8 @@ header {
   width: 100%;
   position: fixed;
   background-color: var(--contrast-color);
-  border: 0 0 1px 0 ridge var(--primary-color);
-  box-shadow: 0 2px 15px var(--primary-color);
+  border: 0 0 1px 0 ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color);
   height: 10vh;
   opacity: 0.8;
 }
@@ -101,10 +102,10 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  border: 1px ridge var(--primary-color);
-  box-shadow: -5px -5px 45px var(--primary-color);
+  border: 1px ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color);
   background-color: var(--light-color);
-  padding: 10% 15% 10% 15%;
+  padding: 10% ;
 }
 /* Hero-Description */
 .desc {
@@ -128,10 +129,10 @@ header {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  border: 1px ridge var(--primary-color);
-  box-shadow: 5px 5px 45px var(--primary-color);
+  border: 1px ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color);
   background-color: var(--contrast-color);
-  padding: 10% 15% 10% 15%;
+  padding: 10% ;
 }
 .personal-summery h1 {
   padding: 15px;
@@ -144,15 +145,15 @@ header {
   padding: 15px;
   transition: all 0.4s;
 }
-.personal-summery p:hover{
+.personal-summery li:hover p{
   letter-spacing: 2px;
-  transition: all 0.4s;
-}
-.personal-summery li:hover{
   background-color: var(--primary-color);
   color: var(--contrast-color);
-  transition: all 0.4s;
 }
+.personal-summery li:hover ul{
+ padding: 2px;
+}
+
 /* End Personal Summery */
 /* Skills */
 .skills {
@@ -162,24 +163,46 @@ header {
   align-items: center;
   font-size: 20px;
   background-color: var(--light-color);
-  border: 1px ridge var(--primary-color);
-  box-shadow: 5px 5px 45px var(--primary-color);
-  padding: 10% 15% 10% 15%;
+  border: 1px ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color);
+  padding: 10%;
+  transition: all 0.4s;
+}
+.skills ul {
+  color: var(--contrast-color);
+  transition: all 0.4s;
 }
 .skills h1 {
   padding: 15px;
   color: var(--contrast-color);
-}
-.skills ul {
-  color: var(--contrast-color);
+  transition: all 0.4s;
 }
 .skills h4 {
   padding: 15px;
   color: var(--secondary-color);
+  transition: all 0.4s;
+  text-align: center;
 }
+
+.skills h5 {
+  padding: 15px;
+  color: var(--contrast-color);
+  transition: all 0.4s;
+}
+
 .skills p {
   padding: 15px;
+  transition: all 0.4s;
 }
+.skills li:hover ul{
+  padding: 2px;
+}
+.skills li:hover p{
+  letter-spacing: 2px;
+  color: var(--contrast-color);
+  background-color: var(--primary-color);
+}
+
 /* End Skills */
 /* Academic */
 .academic {
@@ -188,29 +211,58 @@ header {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  border: 1px ridge var(--primary-color);
-  box-shadow: 5px 5px 45px var(--primary-color);
+  border: 1px ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color);
   background-color: var(--contrast-color);
-  padding: 10% 15% 10% 15%;
+  padding: 10% ;
+  transition: all 0.4s;
 }
 .academic h1 {
   padding: 15px;
   color: var(--light-color);
+  transition: all 0.4s;
 }
 .academic h4 {
   padding: 15px;
   color: var(--primary-color);
+  transition: all 0.4s;
+  text-align: center;
 }
 .academic h5 {
   padding: 15px;
   color: var(--light-color);
+  transition: all 0.4s;
 }
 .academic ul {
   color: var(--light-color);
+  transition: all 0.4s;
 }
 .academic p {
   padding: 15px;
+  transition: all 0.4s;
 }
+.academic li{
+  transition: all 0.4s;
+}
+.academic li:hover{
+  background-color: var(--primary-color);
+}
+.academic li:hover ul{
+  padding: 2px;
+}
+.academic li:hover h4{
+  letter-spacing: 2px;
+  color: var(--light-color);
+}
+.academic li:hover h5{
+  letter-spacing: 2px;
+  color: var(--contrast-color);
+}
+.academic li:hover p{
+  letter-spacing: 2px;
+  color: var(--contrast-color);
+}
+
 /* End Academic */
 /* Work-Experience */
 .work-experience {
@@ -219,28 +271,44 @@ header {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  border: 1px ridge var(--primary-color);
-  box-shadow: 5px 5px 45px var(--primary-color);
+  border: 1px ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color);
   background-color: var(--light-color);
-  padding: 10% 15% 10% 15%;
+  padding: 10%;
+  transition: all 0.4s;
 }
 .work-experience h1 {
   padding: 15px;
   color: var(--contrast-color);
+  transition: all 0.4s;
 }
 .work-experience h4 {
   padding: 15px;
   color: var(--secondary-color);
+  transition: all 0.4s;
+  text-align: center;
 }
 .work-experience h5 {
   padding: 15px;
   color: var(--contrast-color);
+  transition: all 0.4s;
+  text-align: center;
 }
 .work-experience ul {
   color: var(--contrast-color);
+  transition: all 0.4s;
 }
 .work-experience p {
   padding: 15px;
+  transition: all 0.4s;
+}
+.work-experience li:hover ul{
+  padding: 2px;
+}
+.work-experience li:hover p{
+  letter-spacing: 2px;
+  color: var(--contrast-color);
+  background-color: var(--primary-color);
 }
 /* End Work-Experience */
 /* Extra-Curricular */
@@ -250,28 +318,47 @@ header {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  background-color: var(--contrast-color);
-  border: 1px ridge var(--primary-color);
-  box-shadow: 5px 5px 45px var(--primary-color);
-  padding: 10% 15% 10% 15%;
+  border: 1px ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color);background-color: var(--contrast-color);
+  padding: 10% ;
+  transition: all 0.4s;
 }
 .extra-curricular h1 {
   padding: 15px;
   color: var(--light-color);
+  transition: all 0.4s;
 }
 .extra-curricular ul {
   color: var(--light-color);
+  transition: all 0.4s;
 }
 .extra-curricular h4 {
   padding: 15px;
   color: var(--primary-color);
+  transition: all 0.4s;
 }
 .extra-curricular h5 {
   padding: 15px;
   color: var(--light-color);
+  transition: all 0.4s;
 }
 .extra-curricular p {
   padding: 15px;
+  transition: all 0.4s;
+}
+.extra-curricular li:hover ul{
+  padding: 2px;
+}
+.extra-curricular li:hover h4{
+  color: var(--primary-color);
+}
+.extra-curricular li:hover h5{
+  color: var(--light-color);
+}
+.extra-c li:hover p{
+  letter-spacing: 2px;
+  color: var(--contrast-color);
+  background-color: var(--primary-color);
 }
 /* End Extra-Curricular */
 /* Projects */
@@ -282,26 +369,38 @@ header {
   align-items: center;
   font-size: 20px;
   border: 2px ridge var(--contrast-color);
-  background-color: var(--light-color);
-  border: 1px ridge var(--primary-color);
-  box-shadow: 5px 5px 45px var(--primary-color);
-  padding: 10% 15% 10% 15%;
+  border: 1px ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color); background-color: var(--light-color);
+  padding: 10%;
+  transition: all 0.4s;
 }
 .projects h1 {
   padding: 15px;
   color: var(--contrast-color);
+  transition: all 0.4s;
 }
 .work-experience ul {
   color: var(--contrast-color);
+  transition: all 0.4s;
 }
 .projects p {
   padding: 15px;
+  transition: all 0.4s;
 }
 .projects p a{
   color: var(--contrast-color);
+  transition: all 0.4s;
 }
 .projects p a:hover{
-  color: var(--secondary-color);
+  color: var(--light-color);
+}
+.projects li:hover ul{
+  padding: 2px;
+}
+.projects li:hover p{
+  letter-spacing: 2px;
+  color: var(--light-color);
+  background-color: var(--primary-color);
 }
 /* End Work-Projects */
 
