@@ -6,20 +6,33 @@
   --contrast-color: #2d3436;
   --light-color: #ffffff;
 }
-html {
-  scroll-behavior: smooth;
-}
+
 /* Genaral Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  list-style: none;
-  
+  list-style: none; 
+  transition: all 0.4s;
 }
 body {
   font-family: "Poppins";
+}
+html {
+  scroll-behavior: smooth;
+  transition: all 0.4s;
+}
+.glow-border{
+  border: 1px ridge var(--primary-color);
+  box-shadow: 2px 2px 5px var(--primary-color);
+  margin: 10px;
+}
+.center{
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
 }
 
 /* End Genaral Styles */
@@ -36,6 +49,8 @@ header {
   width: 100%;
   position: fixed;
   background-color: var(--contrast-color);
+  border: 0 0 1px 0 ridge var(--primary-color);
+  box-shadow: 0 2px 15px var(--primary-color);
   height: 10vh;
   opacity: 0.8;
 }
@@ -59,10 +74,13 @@ header {
 .link a {
   color: var(--light-color);
   cursor: pointer;
+  transition: all 0.4s;
 }
 .link a:hover {
   color: var(--primary-color);
-  transition: all 0.6s;
+  transition: all 0.4s;
+  letter-spacing: 2px;
+
 }
 /* Nav Hamburger-Icon */
 .ham {
@@ -83,6 +101,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  border: 1px ridge var(--primary-color);
+  box-shadow: -5px -5px 45px var(--primary-color);
   background-color: var(--light-color);
   padding: 10% 15% 10% 15%;
 }
@@ -93,6 +113,7 @@ header {
   padding-left: 10vw;
   font-size: 20px;
 }
+
 /* End Hero-Description */
 /* Hero Image */
 .code-img img {
@@ -107,7 +128,8 @@ header {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  border: 2px ridge var(--contrast-color);
+  border: 1px ridge var(--primary-color);
+  box-shadow: 5px 5px 45px var(--primary-color);
   background-color: var(--contrast-color);
   padding: 10% 15% 10% 15%;
 }
@@ -120,6 +142,16 @@ header {
 }
 .personal-summery p {
   padding: 15px;
+  transition: all 0.4s;
+}
+.personal-summery p:hover{
+  letter-spacing: 2px;
+  transition: all 0.4s;
+}
+.personal-summery li:hover{
+  background-color: var(--primary-color);
+  color: var(--contrast-color);
+  transition: all 0.4s;
 }
 /* End Personal Summery */
 /* Skills */
@@ -130,6 +162,8 @@ header {
   align-items: center;
   font-size: 20px;
   background-color: var(--light-color);
+  border: 1px ridge var(--primary-color);
+  box-shadow: 5px 5px 45px var(--primary-color);
   padding: 10% 15% 10% 15%;
 }
 .skills h1 {
@@ -147,6 +181,37 @@ header {
   padding: 15px;
 }
 /* End Skills */
+/* Academic */
+.academic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border: 1px ridge var(--primary-color);
+  box-shadow: 5px 5px 45px var(--primary-color);
+  background-color: var(--contrast-color);
+  padding: 10% 15% 10% 15%;
+}
+.academic h1 {
+  padding: 15px;
+  color: var(--light-color);
+}
+.academic h4 {
+  padding: 15px;
+  color: var(--primary-color);
+}
+.academic h5 {
+  padding: 15px;
+  color: var(--light-color);
+}
+.academic ul {
+  color: var(--light-color);
+}
+.academic p {
+  padding: 15px;
+}
+/* End Academic */
 /* Work-Experience */
 .work-experience {
   display: flex;
@@ -154,24 +219,25 @@ header {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  border: 2px ridge var(--contrast-color);
-  background-color: var(--contrast-color);
+  border: 1px ridge var(--primary-color);
+  box-shadow: 5px 5px 45px var(--primary-color);
+  background-color: var(--light-color);
   padding: 10% 15% 10% 15%;
 }
 .work-experience h1 {
   padding: 15px;
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 .work-experience h4 {
   padding: 15px;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 .work-experience h5 {
   padding: 15px;
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 .work-experience ul {
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 .work-experience p {
   padding: 15px;
@@ -184,23 +250,25 @@ header {
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  background-color: var(--light-color);
+  background-color: var(--contrast-color);
+  border: 1px ridge var(--primary-color);
+  box-shadow: 5px 5px 45px var(--primary-color);
   padding: 10% 15% 10% 15%;
 }
 .extra-curricular h1 {
   padding: 15px;
-  color: var(--contrast-color);
+  color: var(--light-color);
 }
 .extra-curricular ul {
-  color: var(--contrast-color);
+  color: var(--light-color);
 }
 .extra-curricular h4 {
   padding: 15px;
-  color: var(--secondary-color);
+  color: var(--primary-color);
 }
 .extra-curricular h5 {
   padding: 15px;
-  color: var(--contrast-color);
+  color: var(--light-color);
 }
 .extra-curricular p {
   padding: 15px;
@@ -214,24 +282,26 @@ header {
   align-items: center;
   font-size: 20px;
   border: 2px ridge var(--contrast-color);
-  background-color: var(--contrast-color);
+  background-color: var(--light-color);
+  border: 1px ridge var(--primary-color);
+  box-shadow: 5px 5px 45px var(--primary-color);
   padding: 10% 15% 10% 15%;
 }
 .projects h1 {
   padding: 15px;
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 .work-experience ul {
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 .projects p {
   padding: 15px;
 }
 .projects p a{
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 .projects p a:hover{
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 /* End Work-Projects */
 
@@ -260,7 +330,7 @@ header {
     margin: 0;
     padding: 0;
     transform: translateX(150%);
-    transition: all 0.5s;
+    transition: all 0.4s;
   }
   .link ul {
     background-color: var(--contrast-color);
@@ -268,18 +338,22 @@ header {
     display: flex;
     flex-direction: column;
     transform: translateY(140px);
+    position: relative;
     border: 2px ridge var(--contrast-color);
     padding-right: 150%;
+    padding-left: 10%;
     border-radius: 25px;
     font-size: 15px;
   }
   .link ul li {
     transform: translateX(100%);
+    transform: translateX(-2px)
+    ;
   }
   .link a {
-    transform: translateX(55px);
     color: var(--light-color);
     cursor: pointer;
+    transition: all 0.4s;
   }
   /* Nav Hamburger-Icon */
   .ham {
@@ -296,7 +370,7 @@ header {
   }
   .showmenu {
     transform: translateX(0);
-    transition: all 0.5s;
+    transition: all 0.4s;
   }
   /* End Nav Hamburger-Icon */
   /* End Nav-Link */
@@ -355,6 +429,25 @@ header {
     font-size: 14px;
   }
   /* End Skills */
+   /* Work-Experience */
+   .academic {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .academic h1 {
+    font-size: 26px;
+  }
+  .academic h4 {
+    font-size: 16px;
+  }
+  .academic h5 {
+    font-size: 15px;
+  }
+  .academic p {
+    font-size: 14px;
+  }
+  /* End Work-Experience*/
   /* Work-Experience */
   .work-experience {
     align-items: center;
