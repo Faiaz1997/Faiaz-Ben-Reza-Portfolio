@@ -35,7 +35,23 @@ html {
   align-content: center;
   text-align: center;
 }
-
+.btn-download{
+  border: 2px ridge var(--secondary-color);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+  padding: 2px;
+  border-radius: 20px;
+  margin: 15px;
+}
+.btn-download a{
+  color: var(--light-color);
+}
+.btn-download :hover{
+  letter-spacing: 2px;
+}
 /* End Genaral Styles */
 
 /* Header */
