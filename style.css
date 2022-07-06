@@ -135,6 +135,7 @@ header {
 /* Hero Image */
 .code-img img {
   width: 40vw;
+  
 }
 /* End Hero-Image */
 /* End Hero */
@@ -260,7 +261,7 @@ header {
 .academic li{
   transition: all 0.4s;
 }
-.academic li:hover{
+/* .academic li:hover{
   background-color: var(--primary-color);
 }
 .academic li:hover ul{
@@ -277,7 +278,7 @@ header {
 .academic li:hover p{
   letter-spacing: 2px;
   color: var(--contrast-color);
-}
+} */
 
 /* End Academic */
 /* Work-Experience */
@@ -318,14 +319,14 @@ header {
   padding: 15px;
   transition: all 0.4s;
 }
-.work-experience li:hover ul{
+/*.work-experience li:hover ul{
   padding: 2px;
 }
 .work-experience li:hover p{
   letter-spacing: 2px;
   color: var(--contrast-color);
   background-color: var(--primary-color);
-}
+}*/
 /* End Work-Experience */
 /* Extra-Curricular */
 .extra-curricular {
@@ -419,6 +420,52 @@ header {
   background-color: var(--primary-color);
 }
 /* End Work-Projects */
+/* Contact */
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border: 1px ridge var(--contrast-color);
+  box-shadow: 0 2px 10px var(--contrast-color);background-color: var(--contrast-color);
+  padding: 10% ;
+  transition: all 0.4s;
+}
+.contact h1 {
+  padding: 15px;
+  color: var(--light-color);
+  transition: all 0.4s;
+}
+.dp img{
+  width: 20vw;
+  padding: 15px;
+}
+.contact ul {
+  color: var(--light-color);
+  transition: all 0.4s;
+}
+.contact h5 {
+  padding: 15px;
+  color: var(--light-color);
+  transition: all 0.4s;
+}
+.contact p {
+  padding: 15px;
+  transition: all 0.4s;
+  text-decoration: none;
+  color: var(--light-color);
+}
+.contact p a{
+  color: var(--light-color);
+}
+.contact p a:hover{
+  color: var(--primary-color);
+  letter-spacing: 2px;
+}
+
+
+/* End Contact */
 
 /* End Main */
 
@@ -614,5 +661,25 @@ header {
       font-size: 14px;
     }
     /* End Projects */
+     /* Contact */
+  .contact {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .contact h1 {
+    font-size: 26px;
+  }
+  .dp img{
+    width: 40vw;
+    padding: 15px;
+  }
+  .contact h5 {
+    font-size: 15px;
+  }
+  .contact p {
+    font-size: 14px;
+  }
+  /* End Contact */
   /* End Main */
 }
