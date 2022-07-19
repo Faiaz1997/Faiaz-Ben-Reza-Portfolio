@@ -432,14 +432,20 @@ header {
   padding: 10% ;
   transition: all 0.4s;
 }
+.contact-info{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .contact h1 {
   padding: 15px;
   color: var(--light-color);
   transition: all 0.4s;
 }
 .dp img{
-  width: 20vw;
+  width: max-content;
   padding: 15px;
+  padding-right:5vw;
 }
 .contact ul {
   color: var(--light-color);
@@ -666,6 +672,9 @@ header {
     align-items: center;
     justify-content: center;
     align-content: center;
+  }
+  .contact-info{
+    display:contents;
   }
   .contact h1 {
     font-size: 26px;
