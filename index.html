@@ -1,276 +1,682 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
     <title>Faiaz Ben Reza</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="favicon.png" rel="icon" />
+    <link href="apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Vendor CSS Files -->
     <link
+      href="bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
+    <link
+      href="bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="style.css" rel="stylesheet" />
+
+    <!-- =======================================================
+  * Template Name: DevFolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
   </head>
+
   <body>
-    <header>
-      <div class="nav">
-        <div class="logo">Faiaz Ben Reza</div>
-        <div class="nav-container">
-          <div class="link" id="link">
-            <ul>
-              <li><a href="#">Home</a>
-                <li><a href="#about">About</a></li>
-              <li><a href="#experience">Experiences</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-          </div>
-          <button class="ham" id="ham">
-            <img src="hamburger.png" alt="" />
-          </button>
-        </div>
-      </div>
-    </header>
-    <main>
-      <div class="hero">
-        <div class="code-img">
-          <img src="19362653.jpg" alt="" />
-        </div>
-        <div class="desc">
-          <p>
-            I am seeking a rewarding career as a Software Engineer in a
-            reputable organization that will allow me to expand and apply my
-            learning, skills, and knowledge. Have excellent communication skills
-            and a keen eye for detail. Flexible enough to work in any
-            environment as needed.
-          </p>
-          <div class="btn-download"><a href="CV_Faiaz Ben Reza.pdf">Download CV</a></div>
-        </div>
-      </div>
-      <div class="about" id="about">
-        <div class="personal-summery" id="personal-summery">
-          <h1 class="center">Personal Summery</h1>
-          <ul class="glow-border">
-            <li class="glow-border"><p>- Excellent Problem Solving Ability</p></li>
-            <li class="glow-border"><p>- Quick Learner</p></li>
-            <li class="glow-border">
-              <p>- Responsible, dependable, self-directed, and self-motivated</p>
-            </li>
-            <li class="glow-border"><p>- Hardworking, punctual, and a good team player</p></li>
-          </ul>
-        </div>
-        <div class="skills" id="skills">
-          <h1 class="center">Skills</h1>
-          <ul class="glow-border"><h4>Web</h4>
-            <li class="glow-border">
-              
-              <p>- PHP <br> - Laravel <br> - JavaScript <br> - CSS <br> - HTML
-              </p>
-            </li><h4>Tools</h4>
-            <li class="glow-border">
-              
-              <p>- MS Office <br>- Git <br>- Spreadsheets</p>
-            </li><h4>Operating System</h4>
-            <li class="glow-border">
-              
-              <p>- Windows</p>
-            </li>
-            <h4>Database Management Systems</h4>
-            <li class="glow-border">
-              
-              <p>- Oracle <br>- MySQL <br>- Microsoft SQL Server</p>
-            </li>
-          </ul>
-        </div>
-        <div class="academic">
-          <h1 class="center">Academic History</h1>
-          <ul class="glow-border">
-            <h4>AMERICAN INTERNATIONAL UNIVERSITY -
-              BANGLADESH
-              </h4>
-            <li class="glow-border">
-        
-                  <h5>
-                    BSC in CSE | January 2018 - 2022
-                  </h5>
-                  <p>- CGPA: 3.30 out of 4.00 <br><br>
-                    - Completed a final year undergraduate thesis on “A Comparison
-                    of Low Code Development Platforms in Terms of
-                    Convenience” <br><br>
-                    - Obtained scholarship for extraordinary club activities from
-                    American International University - Bangladesh.
-                  </p>
-            </li>
-            <h4>GOVERNMENT SCIENCE COLLEGE
-            </h4>
-            <li class="glow-border">
-              <h5>
-                H.S.C. (Science) | 2017
-              </h5>
-                  <p>GPA: 4.42 out of 5.00
-                  </p>
-            </li>
-            <h4>GOVERNMENT LABORATORY HIGH SCHOOL
-            </h4>
-            <li class="glow-border">  
-              <h5>
-                S.S.C. (Science) | 2015
-              </h5>
-                  <p>GPA: 5.00 out of 5.00
-                  </p>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="experience" id="experience">
-        <div class="work-experience" id="work-experience">
-          <h1>Work Experience</h1>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+      <div class="container d-flex align-items-center justify-content-between">
+        <h1 class="logo"><a href="index.html">Faiaz</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav id="navbar" class="navbar">
           <ul>
-            <li
-            class="glow-border">
-              <h4>OFFICE ASSISTANT
-              </h4>
-              <h5>American International University - Bangladesh |
-                Jan 2022 - April 2022
-                </h5>
-              <p class="glow-border">I completed an internship as an Office Assistant at
-                American International University-Bangladesh, where I
-                assisted the Computer Science Department with
-                departmental administration.
-                </p>
-            </li>
-          </ul>
-        </div>
-        <div class="extra-curricular" id="extra-curricular">
-          <h1>Extra-Curricular</h1>
-            <ul class="glow-border">
-              <li class="center">
-              <h4>ASSISTANT GENERAL SECRETARY - EVENT
-                COVERAGE AND POST PRODUCTION
-                </h4>
-              <h5>
-                AIUB Computer Club | May 2021 - Present
-              </h5>
-              </li>
-              <li>
-                <ul class="extra-c">
-                  <li class="glow-border">
-                    <p>1. Organized Jarvis 3.0 Intra ACC Carnival
-                    </p>
-                  </li>
-                  <li class="glow-border">
-                    <p>2. Organized 2nd International Conference on Computing
-                      Advancements - ICCA 2022
-                      </p>
-                  </li>
-                  <li class="glow-border">
-                    <p>3. Organized Blockchain Olympiad Bangladesh 2022
-                    </p>
-                  </li>
-                  <li class="glow-border">
-                    <p>4. Volunteered at AIUB Cyber Gaming Fest 2019</p>
-                  </li>
-                  <li class="glow-border">
-                    <p>5. Volunteered at the 2020 Cisco Networking Academy
-                      National Skills Competition</p>
-                  </li>
-                  <li class="glow-border">
-                    <p>6. Volunteered for HULT Prize at American International
-                      University</p>
-                  </li>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="#about">About</a></li>
+            <li><a class="nav-link scrollto" href="#skills">skills</a></li>
+            <li><a class="nav-link scrollto" href="#work">Work</a></li>
+            <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
                 </ul>
               </li>
-            </ul>    
-        </div>
-        <div class="projects" id="projects">
-          <h1 class="center">Projects</h1>
-          <ul class="glow-border">
-            <li class="glow-border">
-              <p><a href="https://github.com/Faiaz1997/Online-Banking-System">- Online Banking System using HTML, CSS, JS, PHP,
-                MySQL</a>
-              </p>
-            </li>
-            <li class="glow-border"> 
-              <p><a href="https://github.com/Faiaz1997/Crowdfunding-App">- Crowd Funding System using HTML, CSS, JS, PHP
-                [LARAVEL], MySQL</a>
-                </p>
-            </li>
-            <li class="glow-border">
-              <p><a href="https://github.com/Faiaz1997/Online-Shop">- Online Shop using HTML, CSS, JS, PHP [LARAVEL],
-                MySQL</a>
-              </p>
-            </li>
-            <li class="glow-border">
-              <p><a href="https://github.com/Faiaz1997/Online-Shop">- Portfolio Website with WordPress</a></p>
-            </li>
-            <li class="glow-border">
-              <p><a href="https://aiubedu60714-my.sharepoint.com/:w:/g/personal/18-36655-1_student_aiub_edu/EaT1P-QsHJ9MlU-apm-qoqEBVguVdNdAIwcFhMfC5QyHHw?rtime=L3mJB_pc2kg">- Wrote and executed Test Cases for the AIUB system</a></p>
-            </li>
-            <li class="glow-border">
-              <p>- Test Plan for the Automated Ticket Issuing System of Dhaka Subway Systems</p>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="contact" id="contact">
-        <h1>Contact</h1>
-        <div class="contact-info">
-          <div class="dp">
-            <img src="./IMG_7471.jpg" alt="">
-          </div>
-          <div class="details">
-            <ul class="center">
-              <li>
-                <h5>
-                  Phone:
-                </h5>
-                <p> <a href="tel:01531962475">01531962475</a> 
-                </p>
-              </li>
-              <li>
-                <h5>
-                  Email: 
-                </h5>
-                <p><a href="mailto:faiazbenreza@gmail.com">faiazbenreza@gmail.com</a> 
-                  </p>
-              </li>
-              <li>
-                <h5>
-                  LinkedIn:
-                </h5>
-                <p><a href="https://www.linkedin.com/in/faiaz-ben-reza">https://www.linkedin.com/in/faiaz-ben-reza</a>
-                </p>
-              </li>
-              <li>
-                <h5>
-                  GitHub:
-                </h5>
-                <p><a href="https://github.com/Faiaz1997">Faiaz1997 (Faiaz Ben Reza) (github.com)</a></p>
-              </li>
-              <li>
-                <h5>
-                  Website:
-                </h5>
-                <p><a href="https://faiaz1997.github.io/Faiaz-Ben-Reza-Portfolio/">https://faiaz1997.github.io/Faiaz-Ben-Reza-Portfolio/</a></p>
-              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
             </ul>
+          </li> -->
+            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <div
+      id="hero"
+      class="hero route bg-image"
+      style="background-image: url(assets/img/medium-shot-man-wearing-vr-glasses.jpg)"
+    >
+      <div class="overlay-itro"></div>
+      <div class="hero-content display-table">
+        <div class="table-cell">
+          <div class="container">
+            <!--<p class="display-6 color-d">Hello, world!</p>-->
+            <h1 class="hero-title mb-4">I am Faiaz Ben Reza</h1>
+            <p class="hero-subtitle">
+              <span
+                class="typed"
+                data-typed-items="WEB DEVELOPER,PHP,LARAVEL,BOOTSTRAP"
+              ></span>
+            </p>
+            <!-- <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p> -->
           </div>
-        </div>  
+        </div>
       </div>
+    </div>
+    <!-- End Hero Section -->
+
+    <main id="main">
+      <!-- ======= About Section ======= -->
+      <section id="about" class="about-mf sect-pt4 route">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="box-shadow-full">
+                <div class="row d-flex align-items-center">
+                  <div class="col-md-6">
+                    <div class="row d-flex ">
+                      <div class="col-sm-6 m-auto">
+                        <div class="about-img">
+                          <img
+                            src="assets/img/testimonial-1.jpg"
+                            class="img-fluid rounded b-shadow-a"
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="about-me ">
+                      <div class="title-box-2">
+                        <h5 class="title-left">About me</h5>
+                      </div>
+                      <p class="lead">
+                        Faiaz Ben Reza, a fresh CSE graduate from American
+                        International University- Bangladesh. Born and brought
+                        up in the vibrant city of Dhaka.
+                      </p>
+                      <p class="lead">
+                        Faiaz is a highly motivated individual who is passionate
+                        about growing his career as a Laravel developer. He is
+                        known for his hardworking and punctual nature, as well
+                        as for his active participation in extracurricular
+                        activities. His leadership skills have been honed
+                        through his role as Assistant General Secretary of the
+                        AIUB Computer Club, where he led his own team, and was
+                        known for his good communication skills.
+                      </p>
+                      <p class="lead">
+                        As a fresh graduate, Faiaz is eager to take on new
+                        challenges and opportunities to improve his skills. He
+                        is constantly exploring new technologies and best
+                        practices in the field, and is dedicated to delivering
+                        high-quality work that exceeds client expectations.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End About Section -->
+
+      <!-- ======= skills Section ======= -->
+      <section id="skills" class="skills-mf pt-5 route">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="title-box text-center">
+                <h3 class="title-a">Skills</h3>
+                <div class="line-mf"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-evenly">
+            <div class="col-md-2">
+              <div class="skills-box">
+                <div class="skills-ico">
+                  <span class="ico-circle"
+                    ><img
+                      src="./assets/img/new-php-logo.png"
+                      class="img-fluid h-50"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="skills-content">
+                  <h2 class="s-title">Php</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="skills-box">
+                <div class="skills-ico">
+                  <span class="ico-circle"
+                    ><img
+                      src="./assets/img/laravel.png"
+                      class="img-fluid h-50"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="skills-content">
+                  <h2 class="s-title">Laravel</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="skills-box">
+                <div class="skills-ico">
+                  <span class="ico-circle"
+                    ><img
+                      src="./assets/img/javascript.png"
+                      class="img-fluid h-50"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="skills-content">
+                  <h2 class="s-title">Javascript</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="skills-box">
+                <div class="skills-ico">
+                  <span class="ico-circle"
+                    ><img
+                      src="./assets/img/bootstrap.png"
+                      class="img-fluid h-50"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="skills-content">
+                  <h2 class="s-title">Bootstrap</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="skills-box">
+                <div class="skills-ico">
+                  <span class="ico-circle"
+                    ><img
+                      src="./assets/img/mysql.png"
+                      class="img-fluid h-50"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="skills-content">
+                  <h2 class="s-title">Mysql</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-evenly">
+            <div class="col-md-3">
+              <div class="skills-box">
+                <div class="skills-ico">
+                  <span class="ico-circle"
+                    ><img
+                      src="./assets/img/microsoft-office.png"
+                      class="img-fluid h-50"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="skills-content">
+                  <h2 class="s-title">MS Office Suit</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="skills-box">
+                <div class="skills-ico">
+                  <span class="ico-circle"
+                    ><img
+                      src="./assets/img/excel-document.png"
+                      class="img-fluid h-50"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="skills-content">
+                  <h2 class="s-title">Google Sheets</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="skills-box">
+                <div class="skills-ico">
+                  <span class="ico-circle"
+                    ><img
+                      src="./assets/img/adobe.png"
+                      class="img-fluid h-50"
+                      alt=""
+                  /></span>
+                </div>
+                <div class="skills-content">
+                  <h2 class="s-title">Adobe Products</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End skillss Section -->
+
+      <!-- ======= educational-backgrounds Section ======= -->
+      <div
+        class="educational-backgrounds paralax-mf bg-image"
+        style="background-image: url(assets/img/overlay-bg.jpg)"
+      >
+        <div class="overlay-mf"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div
+                class="testimonials-slider swiper"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <div class="educational-background-box">
+                      <div class="author-test">
+                        <img
+                          src="assets/img/aiub-logo.svg"
+                          alt=""
+                          class="rounded-circle b-shadow-a img-fluid"
+                          style="width: 125px"
+                        />
+                        <span class="author"
+                          >American International University - Bangladesh</span
+                        >
+                      </div>
+                      <div class="content-test">
+                        <p class="description lead">
+                          BSC in CSE | January 2018 - April 2022
+                        </p>
+                        <p class="description lead">
+                          - CGPA: 3.30 out of 4.00 <br />
+                          - Completed a thesis on “A Comparison of Low Code
+                          Development Platforms in Terms of Convenience” <br />
+                          - Obtained scholarship for extraordinary club
+                          activities.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End educational-background item -->
+
+                  <div class="swiper-slide">
+                    <div class="educational-background-box">
+                      <div class="author-test">
+                        <img
+                          src="assets/img/GSC logo.png"
+                          alt=""
+                          class="rounded-circle b-shadow-a img-fluid"
+                          style="width: 125px"
+                        />
+                        <span class="author">Government Science College</span>
+                      </div>
+                      <div class="content-test">
+                        <p class="description lead">H.S.C. (Science) | 2017</p>
+                        <p class="description lead">- GPA: 4.42 out of 5.00</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End educational-background item -->
+
+                  <div class="swiper-slide">
+                    <div class="educational-background-box">
+                      <div class="author-test">
+                        <img
+                          src="assets/img/Lab logo.png"
+                          alt=""
+                          class="rounded-circle b-shadow-a img-fluid"
+                          style="width: 125px"
+                        />
+                        <span class="author"
+                          >Government Laboratory High School</span
+                        >
+                      </div>
+                      <div class="content-test">
+                        <p class="description lead">S.S.C. (Science) | 2015</p>
+                        <p class="description lead">- GPA: 5.00 out of 5.00</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End educational-background item -->
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+
+              <!-- <div id="educational-background-mf" class="owl-carousel owl-theme">
+              
+            </div> -->
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- End educational-backgrounds Section -->
+
+      <!-- ======= Portfolio Section ======= -->
+      <section id="work" class="portfolio-mf sect-pt4 route">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="title-box text-center">
+                <h3 class="title-a">Portfolio</h3>
+                <p class="subtitle-a">
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                </p>
+                <div class="line-mf"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="work-box">
+                <a
+                  href="https://github.com/Faiaz1997/Online-Banking-System.git">
+                  <div class="work-img d-flex justify-content-center">
+                    <img src="assets/img/bank.png" alt="" class="img-fluid w-25" />
+                  </div>
+                </a>
+                <div class="work-content">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <h2 class="w-title">Online Banking System</h2>
+                      <div class="w-more">
+                        <span class="w-ctegory">Web Application</span> /
+                        <!-- <span class="w-date">18 Sep. 2018</span> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="w-like">
+                        <a href="https://github.com/Faiaz1997/Online-Banking-System.git">
+                          <span class="bi bi-plus-circle"></span
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="work-box">
+                <a
+                  href="https://github.com/Faiaz1997/blog_project_batch_15.git">
+                  <div class="work-img d-flex justify-content-center">
+                    <img src="assets/img/blogger.png" alt="" class="img-fluid w-25" />
+                  </div>
+                </a>
+                <div class="work-content">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <h2 class="w-title">Blog Project</h2>
+                      <div class="w-more">
+                        <span class="w-ctegory">Web Application</span> /
+                        <!-- <span class="w-date">18 Sep. 2018</span> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="w-like">
+                        <a href="https://github.com/Faiaz1997/blog_project_batch_15.git">
+                          <span class="bi bi-plus-circle"></span
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="work-box">
+                <a
+                  href="https://github.com/Faiaz1997/Online-Shop.git">
+                  <div class="work-img d-flex justify-content-center">
+                    <img src="assets/img/shopping-bag.png" alt="" class="img-fluid w-25" />
+                  </div>
+                </a>
+                <div class="work-content">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <h2 class="w-title">Online Shop</h2>
+                      <div class="w-more">
+                        <span class="w-ctegory">Web Application</span> /
+                        <!-- <span class="w-date">18 Sep. 2018</span> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="w-like">
+                        <a href="https://github.com/Faiaz1997/Online-Shop.git">
+                          <span class="bi bi-plus-circle"></span
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="work-box">
+                <a
+                  href="https://aiubedu60714-my.sharepoint.com/:w:/g/personal/18-36655-1_student_aiub_edu/EaT1P-QsHJ9MlU-apm-qoqEBVguVdNdAIwcFhMfC5QyHHw?e=bdaFHC">
+                  <div class="work-img d-flex justify-content-center">
+                    <img src="assets/img/document-coding.png" alt="" class="img-fluid w-25" />
+                  </div>
+                </a>
+                <div class="work-content">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <h2 class="w-title">
+                        Test Plan for the Automated Ticket Issuing System of
+                        Dhaka Subway Systems.
+                      </h2>
+                      <div class="w-more">
+                        <span class="w-ctegory">SQA</span> /
+                        <!-- <span class="w-date">18 Sep. 2018</span> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="w-like">
+                        <a href="https://aiubedu60714-my.sharepoint.com/:w:/g/personal/18-36655-1_student_aiub_edu/EaT1P-QsHJ9MlU-apm-qoqEBVguVdNdAIwcFhMfC5QyHHw?e=bdaFHC">
+                          <span class="bi bi-plus-circle"></span
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="work-box">
+                <a>
+                  <div class="work-img d-flex justify-content-center">
+                    <img src="assets/img/document-coding.png" alt="" class="img-fluid w-25" />
+                  </div>
+                </a>
+                <div class="work-content">
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <h2 class="w-title">Test Cases for the AIUB system</h2>
+                      <div class="w-more">
+                        <span class="w-ctegory">SQA</span> /
+                        <!-- <span class="w-date">18 Sep. 2018</span> -->
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="w-like">
+                        <a>
+                          <span class="bi bi-plus-circle"></span
+                        ></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Portfolio Section -->
+
+      <!-- ======= Contact Section ======= -->
+      <section
+        id="contact"
+        class="paralax-mf footer-paralax bg-image sect-mt4 route"
+      >
+        <div class="overlay-mf"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="contact-mf">
+                <div id="contact" class="box-shadow-full">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="title-box-2 pt-4 pt-md-0">
+                        <h5 class="title-left">Get in Touch</h5>
+                      </div>
+                      <div class="col-md-12 d-flex">
+                        <div class="more-info">
+                          <p class="lead"></p>
+                          <ul class="list-ico">
+                            <li>
+                              <span class="bi bi-github"></span>
+                              <a href="https://github.com/Faiaz1997"
+                                >Faiaz Ben Reza</a
+                              >
+                            </li>
+                            <li>
+                              <span class="bi bi-phone"></span> 01531962475
+                            </li>
+                            <li>
+                              <span class="bi bi-envelope"></span>
+                              faiazbenreza@gmail.com
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="socials ms-auto">
+                          <ul>
+                            <li>
+                              <a href="https://www.facebook.com/faiaz.reza/"
+                                ><span class="ico-circle"
+                                  ><i class="bi bi-facebook"></i></span
+                              ></a>
+                            </li>
+                            <li>
+                              <a href="https://www.instagram.com/faiazbenreza/"
+                                ><span class="ico-circle"
+                                  ><i class="bi bi-instagram"></i></span
+                              ></a>
+                            </li>
+                            <li>
+                              <a href="https://twitter.com/faiaz_reza"
+                                ><span class="ico-circle"
+                                  ><i class="bi bi-twitter"></i></span
+                              ></a>
+                            </li>
+                            <li>
+                              <a
+                                href="https://www.linkedin.com/in/faiaz-ben-reza"
+                                ><span class="ico-circle"
+                                  ><i class="bi bi-linkedin"></i></span
+                              ></a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Contact Section -->
     </main>
-    <footer></footer>
+    <!-- End #main -->
 
-    <script>
-      let ham = document.getElementById("ham");
-      let link = document.getElementById("link");
+    <!-- ======= Footer ======= -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="copyright-box">
+              <p class="copyright">
+                &copy; Copyright <strong>Faiaz Ben Reza</strong>. All Rights
+                Reserved
+              </p>
+              <div class="credits">
+                <!--
+              All the links in the footer should remain intact.
+              You can delete the links only if you purchased the pro version.
+              Licensing information: https://bootstrapmade.com/license/
+              Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=DevFolio
+            -->
+                <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End  Footer -->
 
-      ham.addEventListener("click", function () {
-        link.classList.toggle("showmenu");
-      });
-    </script>
+    <div id="preloader"></div>
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="purecounter_vanilla.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="glightbox.min.js"></script>
+    <script src="swiper-bundle.min.js"></script>
+    <script src="typed.min.js"></script>
+    <script src="validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="main.js"></script>
   </body>
 </html>
