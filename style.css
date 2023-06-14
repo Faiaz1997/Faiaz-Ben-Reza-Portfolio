@@ -924,6 +924,27 @@ a:hover {
 }
 
 /*--------------------------------------------------------------
+# Experience
+--------------------------------------------------------------*/
+.experience-mf .box-shadow-full {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+
+@media (min-width: 767px) {
+  .experience-mf .box-pl2 {
+    margin-top: 3rem;
+    padding-left: 0rem;
+  }
+}
+
+.experience-mf span {
+  color: #4e4e4e;
+}
+
+
+/*--------------------------------------------------------------
 # Counter
 --------------------------------------------------------------*/
 .counter-box {
