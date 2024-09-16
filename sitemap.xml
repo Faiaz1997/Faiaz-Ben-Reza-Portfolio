@@ -1,38 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://faiazbenreza.netlify.app/</loc>
-    <lastmod>2024-05-25</lastmod>
-    <priority>1.00</priority>
-  </url>
-  <url>
-    <loc>https://faiazbenreza.netlify.app/about</loc>
-    <lastmod>2024-05-25</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://faiazbenreza.netlify.app/skills</loc>
-    <lastmod>2024-05-25</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://faiazbenreza.netlify.app/experiences</loc>
-    <lastmod>2024-05-25</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://faiazbenreza.netlify.app/education</loc>
-    <lastmod>2024-05-25</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://faiazbenreza.netlify.app/portfolio</loc>
-    <lastmod>2024-05-25</lastmod>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://faiazbenreza.netlify.app/contact</loc>
-    <lastmod>2024-05-25</lastmod>
-    <priority>0.80</priority>
-  </url>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://faiazbenreza.netlify.app/</loc>
+  <lastmod>2024-09-16T18:04:15+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://faiazbenreza.netlify.app/CV%20of%20FAIAZ%20BEN%20REZA.pdf</loc>
+  <lastmod>2024-09-16T18:04:15+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
 </urlset>
