@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /CV%20of%20FAIAZ%20BEN%20REZA.pdf
+
+Sitemap: https://faiazbenreza.netlify.app/sitemap.xml
