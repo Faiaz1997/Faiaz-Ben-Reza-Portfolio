@@ -982,6 +982,7 @@ a:hover {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   background-color: #fff;
+  height: 350px;
 }
 
 .work-box:hover img {
@@ -1327,10 +1328,11 @@ a:hover {
   display: inline-block;
 }
 
-.card-blog .post-date {
-  color: #4e4e4e;
-  display: inline-block;
+.navbar>ul>li {
+  white-space: nowrap;
+  padding: 10px 0 10px 30px;
   float: right;
+  display: block; /* Ensure display is set to block when using float */
 }
 
 /*--------------------------------------------------------------
