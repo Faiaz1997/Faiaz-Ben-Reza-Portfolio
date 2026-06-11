@@ -4,21 +4,21 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
+  <!-- Homepage (canonical) -->
+  <url>
+    <loc>https://faiazbenreza.netlify.app/</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-<url>
-  <loc>https://your-portfolio-url.netlify.app/</loc>
-  <lastmod>2023-05-14</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>1.0</priority>
-</url>
-<url>
-  <loc>https://faiazbenreza.netlify.app/CV%20of%20FAIAZ%20BEN%20REZA.pdf</loc>
-  <lastmod>2023-05-15</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.80</priority>
-</url>
-
+  <!-- CV / Resume -->
+  <url>
+    <loc>https://faiazbenreza.netlify.app/CV%20of%20FAIAZ%20BEN%20REZA.pdf</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
 </urlset>
