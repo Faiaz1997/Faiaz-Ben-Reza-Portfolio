@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="324" height="555" viewBox="234 713 108 185"><defs>
+  <linearGradient id="skin" x2="0.85" y2="1"><stop stop-color="#dca77f"/><stop offset="1" stop-color="#bf815c"/></linearGradient>
+  <linearGradient id="tunic" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#34425e"/><stop offset="1" stop-color="#1d2740"/></linearGradient>
+  <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5a6678"/><stop offset=".55" stop-color="#3d4757"/><stop offset="1" stop-color="#2a323f"/></linearGradient>
+  <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e3e9f0"/><stop offset=".5" stop-color="#a8b3c1"/><stop offset="1" stop-color="#6f7c8c"/></linearGradient>
+  <linearGradient id="leather" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6a5240"/><stop offset="1" stop-color="#3b2d24"/></linearGradient>
+  <linearGradient id="pants" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#343b48"/><stop offset=".5" stop-color="#2a303b"/><stop offset="1" stop-color="#202530"/></linearGradient>
+  <linearGradient id="cape" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e0394c"/><stop offset=".55" stop-color="#b3202f"/><stop offset="1" stop-color="#7d1220"/></linearGradient>
+  <pattern id="mail" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r="3.2" fill="none" stroke="#8fa2c4" stroke-opacity=".16" stroke-width="1"/></pattern>
+  <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0V8" stroke="#ffffff" stroke-opacity=".07" stroke-width="2"/></pattern>
+</defs><g stroke="#1c2433" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(460 0) scale(-1 1)"><g id="shin">
+  <path d="M162 718L222 718 216 852 166 852Z" fill="url(#pants)"/>
+  <path d="M160 774L224 774 219 856 164 856Z" fill="url(#leather)"/>
+  <path d="M159 774L225 774 224 790 158 790Z" fill="url(#steel)" stroke-width="2.4"/>
+  <path d="M164 800L222 800M164 818L220 818M165 836L219 836" stroke="#2b2019" stroke-width="2.2" stroke-opacity=".7"/>
+  <rect x="180" y="796" width="26" height="9" rx="2.5" fill="url(#steel)" stroke-width="2"/><rect x="180" y="814" width="26" height="9" rx="2.5" fill="url(#steel)" stroke-width="2"/>
+  <path d="M164 849Q153 862 144 871L129 876Q121 880 125 890L215 890Q221 887 218 872L215 850Z" fill="url(#leather)"/>
+  <path d="M127 884Q165 888 216 882" stroke="#1a130e" stroke-width="3"/>
+  <path d="M146 872Q160 866 174 868" stroke="#a98d72" stroke-width="2" fill="none"/>
+</g></g></g></svg>

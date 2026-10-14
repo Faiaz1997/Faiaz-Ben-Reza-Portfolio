@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="219" viewBox="81 566 56 73"><defs>
+    <linearGradient id="skin" x2="0.85" y2="1"><stop stop-color="#dca77f" /><stop offset="1" stop-color="#bf815c" /></linearGradient>
+    <linearGradient id="jacket" x2="1" y2="0.8"><stop stop-color="#7d8590" /><stop offset="1" stop-color="#58616e" /></linearGradient>
+    <linearGradient id="hair" x2="0.2" y2="1"><stop stop-color="#343943" /><stop offset="1" stop-color="#171e27" /></linearGradient>
+    <pattern id="plaid" width="27" height="27" patternUnits="userSpaceOnUse"><path d="M0 8H27M8 0V27" fill="none" stroke="#d7deea" stroke-opacity=".12" stroke-width="1" /><path d="M0 21H27M21 0V27" fill="none" stroke="#273644" stroke-opacity=".14" stroke-width="1.5" /></pattern>
+    <pattern id="tieStripe" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(36)"><rect width="14" height="14" fill="#26313d" /><rect width="5" height="14" fill="#e8edf2" /><rect x="8" width="1.5" height="14" fill="#97a5b2" /></pattern>
+  </defs><g stroke="#253240" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><g id="left-hand"><path d="M98 570L127 575 132 587Q134 596 128 602L124 593 122 620Q122 626 117 624L113 607 113 629Q111 636 107 631L105 610 102 630Q99 635 95 629L95 608 92 621Q89 625 86 620L89 591Q90 579 98 570Z" fill="url(#skin)" /><path d="M96 593L113 591" stroke="#ad704f" stroke-width="1.7" /></g></g></svg>

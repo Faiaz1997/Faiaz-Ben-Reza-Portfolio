@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="219" height="462" viewBox="288 326 73 154"><defs>
+  <linearGradient id="skin" x2="0.85" y2="1"><stop stop-color="#dca77f"/><stop offset="1" stop-color="#bf815c"/></linearGradient>
+  <linearGradient id="tunic" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#34425e"/><stop offset="1" stop-color="#1d2740"/></linearGradient>
+  <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5a6678"/><stop offset=".55" stop-color="#3d4757"/><stop offset="1" stop-color="#2a323f"/></linearGradient>
+  <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e3e9f0"/><stop offset=".5" stop-color="#a8b3c1"/><stop offset="1" stop-color="#6f7c8c"/></linearGradient>
+  <linearGradient id="leather" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6a5240"/><stop offset="1" stop-color="#3b2d24"/></linearGradient>
+  <linearGradient id="pants" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#343b48"/><stop offset=".5" stop-color="#2a303b"/><stop offset="1" stop-color="#202530"/></linearGradient>
+  <linearGradient id="cape" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e0394c"/><stop offset=".55" stop-color="#b3202f"/><stop offset="1" stop-color="#7d1220"/></linearGradient>
+  <pattern id="mail" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r="3.2" fill="none" stroke="#8fa2c4" stroke-opacity=".16" stroke-width="1"/></pattern>
+  <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0V8" stroke="#ffffff" stroke-opacity=".07" stroke-width="2"/></pattern>
+</defs><g stroke="#1c2433" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><g transform="translate(460 0) scale(-1 1)"><g id="upper">
+  <path d="M151 329Q123 328 115 357L105 466Q120 480 141 475L168 359Z" fill="url(#skin)"/>
+  <path d="M118 380Q134 392 140 424" fill="none" stroke="#b97a56" stroke-width="2.4" stroke-opacity=".8"/>
+  <path d="M151 324Q112 320 106 358 L120 380 Q146 370 172 356Z" fill="url(#plate)"/>
+  <path d="M110 352Q146 350 168 352" fill="none" stroke="#c9d3df" stroke-width="2.2" stroke-opacity=".8"/>
+  <path d="M112 366Q138 364 160 364" fill="none" stroke="#222a36" stroke-width="2"/>
+  <circle cx="124" cy="344" r="4" fill="url(#steel)" stroke-width="1.6"/><circle cx="144" cy="338" r="4" fill="url(#steel)" stroke-width="1.6"/>
+</g></g></g></svg>

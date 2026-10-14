@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="510" viewBox="298 584 100 170"><defs>
+  <linearGradient id="skin" x2="0.85" y2="1"><stop stop-color="#dca77f"/><stop offset="1" stop-color="#bf815c"/></linearGradient>
+  <linearGradient id="tunic" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#34425e"/><stop offset="1" stop-color="#1d2740"/></linearGradient>
+  <linearGradient id="plate" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5a6678"/><stop offset=".55" stop-color="#3d4757"/><stop offset="1" stop-color="#2a323f"/></linearGradient>
+  <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e3e9f0"/><stop offset=".5" stop-color="#a8b3c1"/><stop offset="1" stop-color="#6f7c8c"/></linearGradient>
+  <linearGradient id="leather" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6a5240"/><stop offset="1" stop-color="#3b2d24"/></linearGradient>
+  <linearGradient id="pants" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#343b48"/><stop offset=".5" stop-color="#2a303b"/><stop offset="1" stop-color="#202530"/></linearGradient>
+  <linearGradient id="cape" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e0394c"/><stop offset=".55" stop-color="#b3202f"/><stop offset="1" stop-color="#7d1220"/></linearGradient>
+  <pattern id="mail" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="4.5" cy="4.5" r="3.2" fill="none" stroke="#8fa2c4" stroke-opacity=".16" stroke-width="1"/></pattern>
+  <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0V8" stroke="#ffffff" stroke-opacity=".07" stroke-width="2"/></pattern>
+</defs><g stroke="#1c2433" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><g id="hammer">
+  <path d="M338 586L356 586 356 700 338 700Z" fill="url(#leather)"/>
+  <path d="M338 606L356 614M338 626L356 634M338 646L356 654" stroke="#2b2019" stroke-width="2" stroke-opacity=".7"/>
+  <path d="M327 612Q312 622 322 640 L333 636Z" fill="none" stroke="#a98d72" stroke-width="3"/>
+  <rect x="302" y="700" width="90" height="50" rx="7" fill="url(#steel)"/>
+  <path d="M302 712H392M302 738H392" stroke="#5c6878" stroke-width="2.4"/>
+  <path d="M312 706Q347 716 382 706" stroke="#ffffff" stroke-width="2.6" stroke-opacity=".55" fill="none"/>
+  <path d="M338 700L356 700 356 706 338 706Z" fill="#59677a" stroke-width="2"/>
+</g></g></svg>
