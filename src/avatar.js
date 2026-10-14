@@ -39,31 +39,52 @@ export function createAvatar(THREE, hooks = {}) {
     const group=new THREE.Group();group.position.set((point[0]-origin[0])*unit,(origin[1]-point[1])*unit,0);parent.add(group);return group;
   }
   const origin=[230,890];
-  const cape=joint(body,[230,322],origin); place('cape',[100,315,260,500],cape,[230,322],-.06);
-  place('torso',[130,275,200,342],body,origin,.05);
+  // A god-of-thunder build: broader chest, wider cape, heavier arms and steel pauldrons.
+  const BULK=1.16;
+  const cape=joint(body,[230,322],origin); place('cape',[100,315,260,500],cape,[230,322],-.06).scale.x=1.18;
+  place('torso',[130,275,200,342],body,origin,.05).scale.x=BULK;
   const head=joint(body,[230,283],origin);
   const headArt=place('head',[108,8,245,290],head,[230,283],.12);
   const headBlink=place('head-blink',[108,8,245,290],head,[230,283],.121); headBlink.visible=false; headBlink.renderOrder=6; headArt.renderOrder=5;
+  // Layered steel shoulder plates, drawn in the same outlined style as the PNG parts (right side; mirrored for the left).
+  const pauldronTexture=(()=>{
+    const c=document.createElement('canvas'); c.width=256; c.height=200; const g=c.getContext('2d');
+    g.lineJoin='round'; g.lineWidth=7; g.strokeStyle='#1b2232';
+    const lame=(y,w,h,top,bottom)=>{
+      const grad=g.createLinearGradient(0,y,0,y+h); grad.addColorStop(0,top); grad.addColorStop(1,bottom);
+      g.fillStyle=grad; g.beginPath(); g.moveTo(128-w,y+h*.75); g.quadraticCurveTo(128-w*.9,y-h*.35,128,y); g.quadraticCurveTo(128+w*.9,y-h*.35,128+w,y+h*.75);
+      g.quadraticCurveTo(128,y+h*1.15,128-w,y+h*.75); g.closePath(); g.fill(); g.stroke();
+    };
+    lame(118,104,64,'#5b6577','#2c3444'); lame(84,112,66,'#6f7a8d','#353e50'); lame(36,118,78,'#c9d2df','#6c7688');
+    g.strokeStyle='rgba(255,255,255,.55)'; g.lineWidth=5; g.beginPath(); g.moveTo(58,64); g.quadraticCurveTo(120,26,196,60); g.stroke();
+    for(const [x,y] of [[50,100],[206,100],[128,62]]) { g.fillStyle='#dfe6f0'; g.strokeStyle='#1b2232'; g.lineWidth=4; g.beginPath(); g.arc(x,y,9,0,7); g.fill(); g.stroke(); }
+    const texture=new THREE.CanvasTexture(c); texture.colorSpace=THREE.SRGBColorSpace; return texture;
+  })();
   const arms=[],elbows=[],hands=[],legs=[],knees=[];
   for(const side of [-1,1]) {
     const left=side<0, name=left?'left':'right';
     const shoulderPoint=[left?142:318,347], elbowPoint=[left?118:342,468], handPoint=[left?112:348,574];
     const shoulder=joint(body,shoulderPoint,origin);arms.push(shoulder);
-    place(`${name}-upper`,[left?101:288,326,73,154],shoulder,shoulderPoint,.015);
+    shoulder.position.x+=(shoulderPoint[0]-230)*(BULK-1)*unit;
+    place(`${name}-upper`,[left?101:288,326,73,154],shoulder,shoulderPoint,.015).scale.x=1.28;
+    const pauldron=mesh(new THREE.PlaneGeometry(.4,.3),new THREE.MeshBasicMaterial({map:pauldronTexture,transparent:true,depthWrite:false,side:THREE.DoubleSide,toneMapped:false}),shoulder,[side*.05,-.03,.032]);
+    pauldron.rotation.z=-side*.3; pauldron.scale.x=side<0?-1:1;
     const elbow=joint(shoulder,elbowPoint,shoulderPoint);elbows.push(elbow);
-    place(`${name}-forearm`,[left?92:313,452,59,131],elbow,elbowPoint,.022);
+    place(`${name}-forearm`,[left?92:313,452,59,131],elbow,elbowPoint,.022).scale.x=1.2;
     const hand=joint(elbow,handPoint,elbowPoint);hands.push(hand);
-    place(`${name}-hand`,[left?81:323,566,56,73],hand,handPoint,.04);
+    place(`${name}-hand`,[left?81:323,566,56,73],hand,handPoint,.04).scale.setScalar(1.1);
     const hipPoint=[left?191:269,590], kneePoint=[left?191:269,722];
     const leg=joint(body,hipPoint,origin);legs.push(leg);
-    place(`${name}-thigh`,[left?150:231,571,79,167],leg,hipPoint,0);
+    place(`${name}-thigh`,[left?150:231,571,79,167],leg,hipPoint,0).scale.x=1.12;
     const knee=joint(leg,kneePoint,hipPoint);knees.push(knee);
     place(`${name}-shin`,[left?118:234,713,108,185],knee,kneePoint,.005);
   }
 
   // Mjolnir hangs from the right hand whenever the hand is free.
   const hammerArt=place('hammer',[298,584,100,170],hands[1],[348,574],.015);
-  const HAMMER_AWAY=new Set(['wave','dance','jump','spin','stretch','celebrate','flex','code','coffee','read','think']);
+  const hammerHead=joint(hands[1],[348,722],[348,574]), chest=joint(body,[230,430],origin);
+  const HAMMER_AWAY=new Set(['wave','dance','jump','spin','stretch','celebrate','flex','code','coffee','think','hero','clap','shrug','salute','pointR']);
+  const pokes={};
   // A small working prop appears only in the relevant chapters.
   const tablet = new THREE.Group(); tablet.position.set(-.02, .05, .03); hands[0].add(tablet);
   box(dark, tablet, [0, 0, 0], [.36, .48, .008]); box(new THREE.MeshBasicMaterial({ color: '#2a6cff' }), tablet, [0, .01, .005], [.31, .40, .004]);
@@ -106,13 +127,52 @@ export function createAvatar(THREE, hooks = {}) {
   const puffTexture=new THREE.CanvasTexture(puff);
   const steam=[0,1,2].map(()=>floater(puffTexture,.16));
   const notes=['♪','♫','♪','♫'].map((glyph,i)=>floater(glyphTexture(glyph,i%2?'#ffffff':'#dcf879'),.3));
-  const book=new THREE.Group(); body.add(book); book.position.set(0,1.62,.075); book.scale.setScalar(.8); book.visible=false;
-  const pagesMat=mat('#fbf8ea',.9), coverMat=mat('#1c2f8f',.6);
-  for(const side of [-1,1]) {
-    const half=new THREE.Group(); half.position.set(0,0,0); half.rotation.y=side*.08; book.add(half);
-    box(coverMat,half,[side*.17,0,-.012],[.34,.44,.02]); box(pagesMat,half,[side*.17,0,.004],[.31,.41,.018]);
-    for(let i=0;i<4;i++) box(seam,half,[side*.17,.13-i*.07,.015],[.2,.01,.004]);
+  // ---- Lightning ---------------------------------------------------------------------------
+  // Bolts are ribbons in the picture plane: a hot white core over a wide cyan glow, re-jagged many times a second.
+  const BOLT_PTS=12, zap=new THREE.Group(); anchor.add(zap);
+  const additive=(color,opacity)=>new THREE.MeshBasicMaterial({color,transparent:true,opacity,blending:THREE.AdditiveBlending,depthWrite:false,side:THREE.DoubleSide,toneMapped:false});
+  const coreMat=additive('#f4feff',1), glowMat=additive('#38c8ff',.35);
+  const ribbon=(material,order)=>{
+    const geometry=new THREE.BufferGeometry(), index=[];
+    for(let p=0;p<BOLT_PTS-1;p++){ const a=p*2; index.push(a,a+1,a+2,a+1,a+3,a+2); }
+    geometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(BOLT_PTS*6),3)); geometry.setIndex(index);
+    const m=new THREE.Mesh(geometry,material); m.frustumCulled=false; m.renderOrder=order; m.visible=false; zap.add(m); return m;
+  };
+  const bolts=Array.from({length:18},()=>({core:ribbon(coreMat,12),glow:ribbon(glowMat,11)}));
+  const path=Array.from({length:BOLT_PTS},()=>new THREE.Vector2());
+  /** Lay a jagged bolt from (ax,ay) to (bx,by); `jag` is the sideways wander as a share of its length. */
+  function shapeBolt(bolt,ax,ay,bx,by,jag,width,z) {
+    const dx=bx-ax, dy=by-ay, len=Math.hypot(dx,dy)||1, nx=-dy/len, ny=dx/len;
+    let off=0;
+    for(let i=0;i<BOLT_PTS;i++) {
+      const k=i/(BOLT_PTS-1); off=i===0?0:off*.4+(Math.random()-.5)*jag*len;
+      path[i].set(ax+dx*k+nx*off,ay+dy*k+ny*off);
+    }
+    for(const [rib,w] of [[bolt.core,width],[bolt.glow,width*5]]) {
+      const p=rib.geometry.attributes.position.array;
+      for(let i=0;i<BOLT_PTS;i++) {
+        const a=path[Math.max(0,i-1)], c=path[Math.min(BOLT_PTS-1,i+1)], tx=c.x-a.x, ty=c.y-a.y, tl=Math.hypot(tx,ty)||1;
+        const half=w*.5*(1-i/(BOLT_PTS-1)*.8), ox=-ty/tl*half, oy=tx/tl*half;
+        p[i*6]=path[i].x+ox; p[i*6+1]=path[i].y+oy; p[i*6+2]=z; p[i*6+3]=path[i].x-ox; p[i*6+4]=path[i].y-oy; p[i*6+5]=z;
+      }
+      rib.geometry.attributes.position.needsUpdate=true; rib.visible=true;
+    }
   }
+  const flareCanvas=document.createElement('canvas'); flareCanvas.width=flareCanvas.height=128;
+  { const g=flareCanvas.getContext('2d'), r=g.createRadialGradient(64,64,0,64,64,64);
+    r.addColorStop(0,'rgba(255,255,255,1)'); r.addColorStop(.18,'rgba(170,240,255,.85)'); r.addColorStop(.5,'rgba(60,170,255,.25)'); r.addColorStop(1,'rgba(40,120,255,0)');
+    g.fillStyle=r; g.fillRect(0,0,128,128); }
+  const flareTexture=new THREE.CanvasTexture(flareCanvas);
+  const flare=new THREE.Sprite(new THREE.SpriteMaterial({map:flareTexture,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false,toneMapped:false}));
+  flare.renderOrder=13; zap.add(flare);
+  const zapLight=new THREE.PointLight(0x8fe4ff,0,10,1.3); zap.add(zapLight);
+  // Eyes glow electric while the storm is up.
+  const eyes=[-1,1].map(side=>{
+    const s=new THREE.Sprite(new THREE.SpriteMaterial({map:flareTexture,color:'#9ff0ff',transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false,toneMapped:false}));
+    s.position.set(side*.152,.405,.2); s.scale.setScalar(.2); s.renderOrder=13; head.add(s); return s;
+  });
+  let burstAt=-1e9, nextBurst=Math.max(performance.now()+1800,4200), lastZap=0;
+  const tipPoint=new THREE.Vector3(), chestPoint=new THREE.Vector3();
   const CONFETTI=56, confettiPos=new Float32Array(CONFETTI*3), confettiColor=new Float32Array(CONFETTI*3), confettiVel=new Float32Array(CONFETTI*3);
   const confettiGeometry=new THREE.BufferGeometry();
   confettiGeometry.setAttribute('position',new THREE.BufferAttribute(confettiPos,3)); confettiGeometry.setAttribute('color',new THREE.BufferAttribute(confettiColor,3));
@@ -167,7 +227,7 @@ export function createAvatar(THREE, hooks = {}) {
   // ---- Activities --------------------------------------------------------------------------
   // Each activity writes the pose it wants into P; the render loop eases the rig towards it.
   // t = clock seconds, e = seconds since the activity started. `persist` activities hold for a whole chapter.
-  const REST={reach:1,lz:-.06,rz:.06,lx:0,rx:0,le:.1,re:-.1,lex:0,rex:0,y:0,roll:0,lean:0,spin:0,yawOff:0,hx:0,hy:0,hz:0,look:1,legL:0,legR:0,kneeL:0,kneeR:0,tablet:0,idea:0,mug:0,mugTilt:0,book:0,holo:0,notes:0};
+  const REST={reach:1,lz:-.06,rz:.06,lx:0,rx:0,le:.1,re:-.1,lex:0,rex:0,y:0,roll:0,lean:0,spin:0,yawOff:0,hx:0,hy:0,hz:0,look:1,legL:0,legR:0,kneeL:0,kneeR:0,tablet:0,idea:0,mug:0,mugTilt:0,holo:0,notes:0,thunder:0};
   const smooth=(a,b,x)=>{const k=Math.min(1,Math.max(0,(x-a)/(b-a)));return k*k*(3-2*k);};
   const ACT={
     wave:{dur:3,pose(t,e,P){const k=smooth(0,.35,e);P.rz=(.1+1.95*k);P.rx=-.1;P.rex=0;P.re=(.35+Math.sin(t*8)*.42)*k;P.lz=-.12;P.hz=Math.sin(t*3)*.04*k;P.hy=.1*k;P.hx=-.04*k;}},
@@ -192,11 +252,6 @@ export function createAvatar(THREE, hooks = {}) {
       const up=smooth(0,.8,e)*smooth(6,5.2,e), sip=smooth(.9,1.5,e%2.6)*smooth(2.6,2.0,e%2.6)*up;
       P.rx=-1.2*up;P.rex=-1.7*up;P.rz=.14+.08*up;P.lz=-.5*up-.1;P.le=1.35*up;
       P.hx=-.1*sip;P.hz=.05*up;P.mug=1;P.mugTilt=1.0*sip;P.look=.4;
-    }},
-    read:{dur:6.5,pose(t,e,P){
-      const k=smooth(0,.6,e)*smooth(6.5,5.9,e);
-      P.lx=-.95*k;P.rx=-.95*k;P.lex=-1.2*k;P.rex=-1.2*k;P.lz=-.02*k-.1;P.rz=.02*k+.1;
-      P.hx=.3*k;P.look=0;P.book=1;P.lean=.05*k;P.hy=Math.sin(t*1.2)*.04*k;
     }},
     hop:{dur:.9,pose(t,e,P){const air=Math.sin(Math.PI*Math.min(1,e/.8));P.y=air*.3;P.lz=-.4-air*1.6;P.rz=.4+air*1.6;P.kneeL=P.kneeR=(1-air)*.2;}},
     jump:{dur:3,pose(t,e,P){
@@ -243,15 +298,16 @@ export function createAvatar(THREE, hooks = {}) {
     }},
     coffee:{dur:6,pose(t,e,P){
       const up=smooth(0,.8,e)*smooth(6,5.2,e), sip=smooth(.9,1.5,e%2.6)*smooth(2.6,2.0,e%2.6)*up;
-      P.rz=.14+2.4*up;P.re=-4.1*up-.1*(1-up);P.reach=1+.3*up;P.lz=-.07;P.le=.12;
-      P.hz=.08*sip;P.mug=1;P.mugTilt=1.0*sip;P.look=.4;
+      P.rz=.14+.4*up+.12*sip;P.re=-.1-1.9*up-.3*sip;P.lz=-.13;P.le=.22;
+      P.hz=.05*sip;P.mug=1;P.mugTilt=.7*sip;P.look=.4;
     }},
-    read:{dur:6.5,pose(t,e,P){
-      const k=smooth(0,.6,e)*smooth(6.5,5.9,e);
-      P.lz=-.12*k-.07;P.rz=.12*k+.07;P.le=1.95*k+.12*(1-k);P.re=-1.95*k-.12*(1-k);
-      P.hz=.06*k;P.look=0;P.book=1;P.hy=Math.sin(t*1.2)*.05*k;
+    // Mjolnir raised overhead: lightning strikes down into it and explodes outwards.
+    thunder:{dur:4,start:time=>{burstAt=time;},pose(t,e,P){
+      const k=smooth(0,.35,e)*smooth(4,3.4,e), shake=Math.sin(t*38)*.02*k;
+      P.rz=.1+2.95*k;P.re=-.12*k;P.lz=-.07-.55*k;P.le=-1.3*k;
+      P.legL=-.35*k;P.legR=.35*k;P.y=Math.abs(shake);P.roll=shake;P.hz=-.05*k;P.look=0;P.thunder=k;
     }},
-    flex:{dur:3.4,pose(t,e,P){
+    flex:{dur:3.4,start:time=>{burstAt=time;},pose(t,e,P){
       const k=smooth(0,.35,e)*smooth(3.4,3,e), pulse=1+Math.sin(t*7)*.06;
       P.lz=-1.5*k-.07;P.rz=1.5*k+.07;P.le=-1.75*pulse*k;P.re=1.75*pulse*k;P.y=Math.abs(Math.sin(t*3.5))*.025*k;P.hz=Math.sin(t*3.5)*.06*k;P.look=.4;
     }},
@@ -260,13 +316,56 @@ export function createAvatar(THREE, hooks = {}) {
       P.lz=-.9*k-.07;P.rz=.9*k+.07;P.le=-.5*k;P.re=.5*k;P.y=.04*k;P.hz=.12*Math.sin(t*20)*k;P.look=.2;
     }}
   });
+  Object.assign(ACT,{
+    // Hands on hips, chest out, feet planted wide.
+    hero:{dur:4,pose(t,e,P){
+      const k=smooth(0,.4,e)*smooth(4,3.5,e);
+      P.lz=-.55*k-.07;P.le=1.5*k+.12*(1-k);P.rz=.55*k+.07;P.re=-1.5*k-.12*(1-k);
+      P.legL=-.25*k;P.legR=.25*k;P.hz=-.04*k;P.look=.4;P.y=Math.sin(t*2)*.01*k;
+    }},
+    // Both hands meeting in front of the chest.
+    clap:{dur:3.2,pose(t,e,P){
+      const k=smooth(0,.3,e)*smooth(3.2,2.8,e), beat=Math.sin(t*15);
+      P.lz=-.22;P.rz=.22;P.le=(1.55+beat*.32)*k;P.re=(-1.55-beat*.32)*k;P.y=Math.abs(Math.sin(t*7.5))*.03*k;P.look=.5;P.hz=Math.sin(t*7.5)*.03*k;
+    }},
+    // Arms out, palms up, a little head tilt: "no idea".
+    shrug:{dur:2.6,pose(t,e,P){
+      const k=smooth(0,.25,e)*smooth(2.6,2.2,e), pulse=.75+Math.sin(e*5)*.25;
+      P.lz=-.5*k-.07;P.le=-.95*pulse*k;P.rz=.5*k+.07;P.re=.95*pulse*k;P.hz=.14*k;P.y=Math.abs(Math.sin(e*5))*.02*k;P.look=.3;
+    }},
+    // Pointing with the other arm, for stations whose set is on the side that arm faces.
+    pointR:{persist:true,pose(t,e,P){P.rz=1.3;P.re=.05;P.lz=-.13;P.le=.22;P.hz=.04;P.hy=-.12;}},
+    // A crisp salute with the free hand.
+    salute:{dur:2.8,pose(t,e,P){
+      const k=smooth(0,.3,e)*smooth(2.8,2.3,e);
+      P.rz=.07+.9*k;P.re=-.12-3.65*k;P.reach=1+.25*k;P.lz=-.13;P.le=.22;P.hy=-.02*k;P.look=.2;P.y=.0;
+    }}
+  });
   const QUIPS={
-    wave:['Hi there! 👋'],dance:['Friday-sprint energy! 🕺','Zero bugs, all vibes.'],code:['Refining the story…','Just one more commit…'],
-    coffee:['Backlog grooming fuel ☕','Coffee first, roadmap later.'],read:['Reading the docs. Really.','Chapter 3: stakeholder management.'],
-    jump:['Sprint goal achieved! 🙌','Up we go!'],flex:['Strong requirements. Stronger coffee.','Scope creep? Not today.'],spin:['Roadmap pivot! 🌀','Wheee!'],
-    stretch:['Quick stretch between standups.'],celebrate:['Nice one! 🎉'],boop:['Hey! Mind the glasses 😄','That’s my head, friend.','Boop received. 👀']
+    wave:['Hi there! 👋','Hello, hello! Welcome in.','Oh, a visitor! Hi! 👋'],
+    dance:['Friday-sprint energy! 🕺','Zero bugs, all vibes.','Retro went well. Time to dance!','This one’s for the backlog. 🎶'],
+    code:['Refining the story…','Just one more commit…','Works on my machine. 😅','Writing user stories… in code, apparently.'],
+    coffee:['Backlog grooming fuel ☕','Coffee first, roadmap later.','Decaf? In this economy?','Fourth cup. Still estimating.'],
+    thunder:['Bring the thunder! ⚡','Deadline? I am the storm.','Scope creep has been struck down.','Bugs fear the hammer. 🔨','By the power of Brain Station 23!'],
+    jump:['Sprint goal achieved! 🙌','Up we go!','Velocity is up! 📈','Boing!'],
+    flex:['Strong requirements. Stronger coffee.','Scope creep? Not today.','Those are well-groomed biceps.','Leg day? I do backlog day.'],
+    spin:['Roadmap pivot! 🌀','Wheee!','Agile means I can turn on a dime.','Pivot, pivot, pivot!'],
+    stretch:['Quick stretch between standups.','Hydrate. Stretch. Ship.','Standup: 15 minutes. Stretch: 3 seconds.'],
+    celebrate:['Nice one! 🎉','Ship it! 🚀','Release day! 🎊'],
+    boop:['Hey! Mind the glasses 😄','That’s my head, friend.','Boop received. 👀','Beard intact. Ego slightly bruised.'],
+    hero:['Hands on hips. Ready for the sprint. 🦸','Assemble the requirements!','Stance: confident. Roadmap: clear.','Every product needs a hero. Hi!'],
+    clap:['Well done! 👏','Applause for good requirements! 👏','Stakeholders approve. Clap clap!','Great question, by the way.'],
+    shrug:['Not in the backlog… 🤷','Requirements unclear. Need more info.','Out of scope! Probably.','I’d have to check Jira. 🤷'],
+    salute:['Aye aye, Product Owner! 🫡','Reporting for sprint duty.','Standup attendance: present.','At your service, visitor.']
   };
-  const FUN=['dance','jump','flex','spin','coffee','code','read','wave'];
+  // Reactions to being poked: each body part cycles through its own lines, and persistent poking escalates.
+  const REACT={
+    head:[['boop','Boop! 👀'],['boop','Hey, that’s my head.'],['shrug','Do I have something on my face?'],['spin','Okay okay, you win! 🌀'],['salute','Fine. Greetings, poker. 🫡']],
+    arm:[['wave','High five! ✋'],['clap','Nice grip! 👏'],['flex','Feel that? Pure stakeholder management.'],['wave','Yes, I wave at everyone.']],
+    body:[null,['hero','You can’t dent the armour. 🛡️'],['jump','Whoa! Tickles!'],['shrug','Was that a feature request?'],['dance','Fine, let’s dance. 🕺']],
+    hammer:[['thunder','Only the worthy may lift Mjolnir… ⚡'],['thunder','Worthy! Okay, stand back!'],['flex','I can lift it. Can you?'],['thunder','You’ve got good taste in hammers. 🔨']]
+  };
+  const FUN=['dance','jump','flex','spin','coffee','code','thunder','wave','hero','clap','shrug','salute'];
 
 
   let act={name:'wave',start:performance.now(),until:performance.now()+3300};
@@ -285,7 +384,7 @@ export function createAvatar(THREE, hooks = {}) {
       Object.assign(P,REST);
       if(!paused&&def&&(live||def.persist)) def.pose(t,e,P);
       if(moving) { Object.assign(P,REST); P.look=.5; }
-      else if(!paused&&!live&&!(def&&def.persist)&&time>=talkUntil) { P.lz=-.06; P.rz=.06; P.le=.1; P.re=-.1; }
+      else if(!paused&&!live&&!(def&&def.persist)&&time>=talkUntil) { P.lz=-.13; P.rz=.13; P.le=.22; P.re=-.22; }
       else if(!paused&&time<talkUntil&&!live) { P.lz=-.07; P.le=.12; P.rz=.55+Math.sin(t*3)*.06; P.re=-1.25+Math.sin(t*5.5)*.2; P.hz=Math.sin(t*2.4)*.03; }
       yaw=lerp(yaw,ctx.yaw+P.yawOff,ease); root.rotation.y=0;
       if(moving) manualFace=0;
@@ -324,15 +423,45 @@ export function createAvatar(THREE, hooks = {}) {
       tablet.visible=!moving&&!!P.tablet; idea.visible=!moving&&!!P.idea;
       if(idea.visible) { idea.rotation.set(t*.5,t*.8,.2); idea.position.y=2.47+Math.sin(t*2)*.04; }
       sunglasses.visible=shadesOn;
-      hammerArt.visible=moving||!(live&&HAMMER_AWAY.has(name))&&!(!live&&HAMMER_AWAY.has(name)&&def&&def.persist);
+      { const away=!moving&&HAMMER_AWAY.has(name)&&(live||(def&&def.persist)), raised=Math.abs(arms[1].rotation.z)+Math.abs(elbows[1].rotation.z); hammerArt.visible=!away&&raised<1.15; }
       cape.rotation.z=lerp(cape.rotation.z,paused?0:Math.sin(t*1.5)*.025+(moving?.22+Math.sin(t*5)*.04:0)+P.roll*.6,ease); cape.scale.x=paused?1:1+Math.sin(t*2.1)*.02+(moving?.05:0)+Math.max(0,body.position.y)*.4;
-      book.visible=!moving&&!!P.book;
+      // Lightning: a constant crackle on the hammer and over the body, a big burst every few seconds,
+      // and during `thunder` bolts from the sky into the raised hammer.
+      if(!paused&&!moving&&!live&&time>nextBurst) { burstAt=time; nextBurst=time+6500+Math.random()*5000; }
+      const striking=!paused&&!moving&&P.thunder>.6;
+      if(striking&&time-burstAt>1150) burstAt=time;
+      const power=paused?0:Math.max(0,1-(time-burstAt)/750);
+      if(time-lastZap>55||paused) {
+        lastZap=time; let n=0;
+        anchor.updateMatrixWorld(true);
+        hammerHead.getWorldPosition(tipPoint); anchor.worldToLocal(tipPoint); chest.getWorldPosition(chestPoint); anchor.worldToLocal(chestPoint);
+        const R=Math.random, hammerOn=hammerArt.visible, z=.3;
+        if(!paused) {
+          if(hammerOn) for(let i=0;i<3;i++) if(R()<.6) { const a=R()*Math.PI*2, L=.2+R()*.4; shapeBolt(bolts[n++],tipPoint.x,tipPoint.y,tipPoint.x+Math.cos(a)*L,tipPoint.y+Math.sin(a)*L,.45,.022,z); }
+          if(R()<.45) { const x=(R()-.5)*1.3, y=.6+R()*2.2, a=R()*Math.PI*2, L=.25+R()*.35; shapeBolt(bolts[n++],x,y,x+Math.cos(a)*L,y+Math.sin(a)*L,.5,.016,z); }
+          if(power>0||striking) {
+            const src=striking&&hammerOn?tipPoint:chestPoint, count=striking?7:11, reach=striking?1.4:.7+power*1.9;
+            for(let i=0;i<count&&n<bolts.length-2;i++) {
+              const a=(i+R()*.7)/count*Math.PI*2, L=reach*(.55+R()*.6);
+              shapeBolt(bolts[n++],src.x,src.y,src.x+Math.cos(a)*L*1.15,src.y+Math.sin(a)*L,.32,.036*(.6+Math.max(power,striking?.7:0)),z);
+            }
+          }
+          if(striking&&hammerOn) for(let i=0;i<2;i++) shapeBolt(bolts[n++],tipPoint.x+(R()-.5)*2.4,tipPoint.y+5.5,tipPoint.x,tipPoint.y,.2,.055,z);
+        }
+        for(let i=n;i<bolts.length;i++) bolts[i].core.visible=bolts[i].glow.visible=false;
+        const surge=Math.max(power,striking?.75+R()*.25:0), src=striking&&hammerOn?tipPoint:power>0?chestPoint:tipPoint;
+        coreMat.opacity=.8+R()*.2; glowMat.opacity=.25+R()*.2+surge*.2;
+        flare.position.set(src.x,src.y,z+.05); flare.scale.setScalar(surge>0?.7+surge*1.05+R()*.2:hammerOn?.5+R()*.25:0);
+        flare.material.opacity=surge>0?.3+surge*.25:hammerOn?.3+R()*.2:0;
+        zapLight.position.set(src.x,src.y,.8); zapLight.intensity=surge*(18+R()*10)+(hammerOn&&!paused?R()*1.5:0);
+        eyes.forEach(eye=>{ eye.material.opacity=surge>0?Math.min(1,surge*1.4)*(.75+R()*.25):0; eye.scale.setScalar(.16+surge*.12); });
+      }
       const showHolo=!moving&&!!P.holo; holo.visible=showHolo;
       if(showHolo) drawCode(Math.floor((e*20)%(codeLength+26)));
       const showMug=!moving&&!!P.mug; mug.visible=showMug;
       if(showMug) {
         anchor.updateMatrixWorld(true); hands[1].getWorldPosition(handPoint); anchor.worldToLocal(handPoint);
-        mug.position.set(handPoint.x-.03,handPoint.y+.05,handPoint.z+.05); mug.rotation.z=P.mugTilt*.6;
+        mug.position.set(handPoint.x+.02,handPoint.y+.07,handPoint.z+.05); mug.rotation.z=P.mugTilt*.6;
         steam.forEach((puffSprite,i)=>{
           const phase=(t*.45+i/3)%1; puffSprite.visible=P.mugTilt<.3;
           puffSprite.position.set(mug.position.x+Math.sin(t*2+i*2)*.03,mug.position.y+.1+phase*.28,mug.position.z); puffSprite.material.opacity=Math.sin(phase*Math.PI)*.7;
@@ -364,7 +493,7 @@ export function createAvatar(THREE, hooks = {}) {
     /** Start an activity and show one of its quips. */
     play(name, quip=true) {
       if(!ACT[name]) return;
-      if(name!=='boop'&&name!=='stretch'&&name!=='wave'&&name!=='hop') lastFun=name;
+      if(!['boop','stretch','wave','hop','salute','shrug'].includes(name)) lastFun=name;
       if(quip&&QUIPS[name]) say(pick(QUIPS[name]));
       api.animatePose(name);
     },
@@ -376,10 +505,22 @@ export function createAvatar(THREE, hooks = {}) {
     headWorld(target) { head.getWorldPosition(target); return target.y+=1.05, target; },
     /** Which body part does this raycaster hit? */
     hit(raycaster) {
-      const found=raycaster.intersectObject(root,true)[0]; if(!found) return null;
+      const hits=raycaster.intersectObject(root,true), found=hits[0]; if(!found) return null;
+      if(hammerArt.visible&&hits.some(h=>h.object===hammerArt)) return 'hammer';
       for(let o=found.object;o;o=o.parent) { if(o===head) return 'head'; if(arms.includes(o)) return 'arm'; }
       return 'body';
     },
+    /** Poked on `part`: cycle that part's reactions; poking the same part again and again moves on to the cheekier ones. */
+    react(part) {
+      const list=REACT[part]; if(!list) return api.fun();
+      const now=performance.now(), s=pokes[part]||(pokes[part]={n:0,at:0});
+      s.n=now-s.at<6000?s.n+1:0; s.at=now;
+      const entry=list[s.n%list.length];
+      if(!entry) return api.fun();
+      say(entry[1]); api.animatePose(entry[0]);
+    },
+    /** A random line for the current mood, shown without starting an activity. */
+    chatter(lines) { say(pick(lines)); },
     isBusy(time) { return time<act.until; },
     talk(ms) { talkUntil=performance.now()+ms; },
     quips: QUIPS

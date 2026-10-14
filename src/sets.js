@@ -219,34 +219,47 @@ export function createSets(THREE) {
     });
   }
 
-  // 4 — The journey: three Bifrost gates float in an arc around the avatar, joined by a rainbow arch, past to now.
+  // 4 — The journey: a floating stair of three career plates climbing past-to-now, with the avatar standing at its top step.
   {
     const g = new THREE.Group(); g.add(platform(C.violet));
-    const gold = new THREE.MeshStandardMaterial({ color: 0xe0b43a, metalness: .9, roughness: .25, emissive: 0x5a3c06, emissiveIntensity: .4 });
-    const stops = [['2024', 'Smart Software', 'Laravel intern', .6, [-2.1, 1.75, -.8], 0x8b6bff], ['2025', 'Rain71', 'Marketing BA', .62, [0, 4.0, -1.5], 0x35e6ff], ['NOW', 'Brain Station 23', 'BA I · Product Owner', .75, [2.1, 1.75, -.8], 0xd8f55a]];
+    const gold = new THREE.MeshStandardMaterial({ color: 0xe0b43a, metalness: .9, roughness: .3, emissive: 0x5a3c06, emissiveIntensity: .45 });
+    const stone = themedStd('#1a2150', '#d6defa', { roughness: .6, metalness: .2 });
     const bifrost = canvasTexture(256, 16, (ctx, W, H) => { const gr = ctx.createLinearGradient(0, 0, W, 0); ['#ff4d6d', '#ffb347', '#ffe66d', '#6dff8c', '#4dd2ff', '#8a6dff', '#ff4d6d'].forEach((c, k, arr) => gr.addColorStop(k / (arr.length - 1), c)); ctx.fillStyle = gr; ctx.fillRect(0, 0, W, H); });
-    bifrost.texture.wrapS = THREE.RepeatWrapping; bifrost.texture.repeat.set(3, 1);
-    const arc = new THREE.CatmullRomCurve3(stops.map(([, , , , p]) => new THREE.Vector3(p[0], p[1], p[2] - .06)));
-    add(new THREE.TubeGeometry(arc, 60, .06, 8, false), new THREE.MeshBasicMaterial({ map: bifrost.texture, transparent: true, opacity: .9 }), g);
-    const caps = [], discs = [], rings = [];
-    stops.forEach(([year, company, role, r, p, color], i) => {
-      const gate = new THREE.Group(); gate.position.set(...p); g.add(gate);
-      const ring = add(new THREE.TorusGeometry(r, .075, 16, 56), gold, gate); rings.push(ring);
-      add(new THREE.TorusGeometry(r + .14, .018, 8, 56), glow(color), gate);
-      const disc = add(new THREE.CircleGeometry(r, 48), new THREE.MeshBasicMaterial({ color, transparent: true, opacity: .16, depthWrite: false, blending: THREE.AdditiveBlending }), gate, [0, 0, -.02]);
-      discs.push(disc); caps.push(disc);
-      const tag = label([[year, 22, 700, C.lime], [company, 26, 800, '#fff'], [role, 15, 600, '#c8d2ff']], { w: 420, h: 190, scale: r * 2.1, border: '#' + color.toString(16).padStart(6, '0') }); tag.position.set(0, 0, .05); gate.add(tag);
-      add(new THREE.CylinderGeometry(.03, .03, p[1] - .3, 6), glow(color, { transparent: true, opacity: .25 }), g, [p[0], (p[1] + .3) / 2 - .15, p[2] - .05]).visible = false;
+    bifrost.texture.wrapS = THREE.RepeatWrapping; bifrost.texture.repeat.set(2, 1);
+    // [year, company, role, where, x, y, accent, tint]
+    const stops = [
+      ['2024', 'Smart Software', 'Laravel Intern', 'PHP · Laravel · MySQL', -1.25, 1.0, 0x8b6bff],
+      ['2025', 'Rain71', 'Marketing Business Analyst', 'Remote · Michigan, USA', -.75, 2.15, 0x35e6ff],
+      ['NOW', 'Brain Station 23', 'BA I · Product Owner', 'SalesPro23 · Dhaka', -.25, 3.3, 0xd8f55a]
+    ];
+    const W = 1.85, plates = [], hits = [], gems = [], glows = [];
+    stops.forEach(([year, company, role, where, x, y, color], i) => {
+      const hex = '#' + color.toString(16).padStart(6, '0'), s = new THREE.Group(); s.position.set(x, y, -.5 - (2 - i) * .1); g.add(s);
+      // The plate: a clear card with the accent colour down its edge, readable at a glance.
+      const plate = label([[year, 24, 800, hex], [company, 38, 800, '#ffffff'], [role, 23, 600, '#d6defa'], [where, 20, 600, '#8fa0e0']], { w: 480, h: 230, scale: W, bg: 'rgba(8,12,38,.9)', border: hex });
+      plate.position.set(0, .06, .12); s.add(plate);
+      // The step it rests on: a floating stone slab with a gold edge and a rainbow underside.
+      add(new THREE.BoxGeometry(W * .98, .09, .75), stone, s, [0, -.49, 0]);
+      add(new THREE.BoxGeometry(W * 1.0, .035, .78), gold, s, [0, -.425, 0]);
+      add(new THREE.BoxGeometry(W * .94, .02, .7), new THREE.MeshBasicMaterial({ map: bifrost.texture }), s, [0, -.55, 0]);
+      const gem = add(new THREE.OctahedronGeometry(.1, 0), gold, s, [W * .5 - .02, .5, .1]); gems.push(gem);
+      const lamp = add(new THREE.SphereGeometry(.05, 12, 8), glow(hex), s, [-W * .5 + .03, -.425, .3]); glows.push(lamp);
+      const hit = add(new THREE.PlaneGeometry(W, .98), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }), s, [0, 0, .14]); hits.push(hit);
+      plates.push(s);
     });
+    // Light rises with the steps, and a bright "NOW" pulse sits on the last one.
+    const stair = new THREE.PointLight(0x9fb4ff, 7, 7, 1.7); stair.position.set(-.8, 2.2, 1.6); g.add(stair);
     station({
-      id: 'experiences', panel: 'left', group: g, accent: C.violet, stand: () => ({ x: 0, y: .28 }), rest: 'point', picks: caps,
+      id: 'experiences', panel: 'left', group: g, accent: C.violet, stand: () => ({ x: 1.55, y: .28 }), rest: 'pointR', picks: hits,
       update(t) {
-        bifrost.texture.offset.x = -t * .12;
-        discs.forEach((d, i) => { d.material.opacity = .14 + (Math.sin(t * 1.6 + i * 1.3) + 1) * .06; });
-        rings.forEach((rg, i) => { rg.rotation.z = Math.sin(t * .5 + i) * .05; rg.parent.position.y = stops[i][4][1] + Math.sin(t * 1.1 + i * 2) * .05; });
+        bifrost.texture.offset.x = -t * .1;
+        plates.forEach((s, i) => { s.position.y = stops[i][5] + Math.sin(t * 1.1 + i * 1.7) * .05; });
+        gems.forEach((m, i) => { m.rotation.y = t * 1.2 + i; m.rotation.x = Math.sin(t + i) * .3; });
+        glows.forEach((m, i) => { m.scale.setScalar(1 + (i === 2 ? .45 : .15) * (Math.sin(t * 3 + i) + 1) / 2); });
+        stair.intensity = 6 + Math.sin(t * 1.4) * 1.2;
       }
     });
-    caps.forEach((c, i) => pick(c, () => ({ say: ['Where it started: Laravel & PHP.', 'Where marketing met product.', 'Where I am now. Come along!'][i], act: i === 2 ? 'celebrate' : 'point' })));
+    hits.forEach((c, i) => pick(c, () => ({ say: ['Where it started: Laravel & PHP.', 'Where marketing met product.', 'Where I am now. Come along!'][i], act: i === 2 ? 'celebrate' : 'point' })));
   }
 
   // 5 — Toolkit: four CPU chips orbiting the avatar, one per skill group.

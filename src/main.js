@@ -1,5 +1,6 @@
 /* The portfolio world: a fixed WebGL scene whose camera and character follow the page scroll. */
 import './ui.js';
+import { INTRO_MIN_MS } from './intro.js';
 import './world.css';
 import * as THREE from 'three';
 import { createAvatar } from './avatar.js';
@@ -530,10 +531,10 @@ function start() {
     if (clicks.length >= 5) { clicks = []; say('Okay, okay. I’m dizzy! 😵‍💫'); avatar.animatePose('spin'); return; }
     const found = pickAt(event); dirty = true;
     if (found?.pick) { const r = found.pick(); if (r) { say(r.say); avatar.animatePose(r.act); } return; }
-    if (found?.part === 'head') avatar.play('boop');
-    else if (found?.part === 'arm') { say('High five! ✋'); avatar.animatePose('wave'); }
+    if (found?.part) avatar.react(found.part);
     else if (found) avatar.fun();
   });
+  canvas.addEventListener('dblclick', event => { const found = pickAt(event); if (found?.part) avatar.play('jump'); });
   let hoverFrame = 0;
   window.addEventListener('pointermove', event => {
     lastInput = performance.now(); dirty = true;
@@ -554,7 +555,7 @@ function start() {
   addEventListener('load', measure);
 
   // Quick-play tray and keyboard shortcuts.
-  const SHORTCUTS = { d: 'dance', t: 'code', c: 'coffee', b: 'read', j: 'jump', f: 'flex', s: 'spin' };
+  const SHORTCUTS = { d: 'dance', t: 'code', c: 'coffee', b: 'thunder', h: 'thunder', j: 'jump', f: 'flex', s: 'spin', w: 'wave', p: 'hero', a: 'clap', m: 'shrug', r: 'salute' };
   document.querySelectorAll('[data-activity]').forEach(button => button.addEventListener('click', () => { lastInput = performance.now(); avatar.play(button.dataset.activity); dirty = true; }));
   addEventListener('keydown', event => {
     lastInput = performance.now();
@@ -578,17 +579,46 @@ function start() {
     if (type === 'copied') { avatar.animatePose('celebrate'); say('Email copied. Talk soon? 💌'); dispatchEvent(new CustomEvent('faiaz:world', { detail: { type: 'copied' } })); }
     if (type === 'theme') say(root.dataset.theme === 'light' ? 'Good morning! Shades on. 😎' : 'Night mode. Lights down. 🌙');
   });
-  const idle = ['stretch', 'coffee', 'dance', 'jump', 'flex', 'code', 'read', 'spin'];
+  const idle = ['stretch', 'coffee', 'dance', 'jump', 'flex', 'code', 'thunder', 'spin', 'hero', 'clap', 'shrug', 'salute'];
+  // Things he says about the section he is standing in, once he has been left alone for a while.
+  const CHATTER = [
+    ['Psst… try the buttons below. ⚡', 'Tap me. Go on.', 'Scroll down. The good stuff is below.'],
+    ['Pick a project. I’ll point at it.', 'Seven projects, zero boring ones.', 'SalesPro23 is my favourite child.'],
+    ['Ask me anything. Well, scroll first.', 'Yes, the beard is real.', 'Fun fact: I like a good spreadsheet.'],
+    ['Ask, define, build. In that order.', 'Skipping research is how scope creeps.', 'Tabs! Click one!'],
+    ['Three gates, one story.', 'It all started with PHP and Laravel.', 'Click a gate and I’ll tell you more.'],
+    ['Those chips are my toolkit.', 'Poke a chip. They’re friendly.', 'I use AI for the boring parts.'],
+    ['Where it all started. 📚', 'Coffee fuelled most of those exams.', 'CSE taught me to read requirements both ways.'],
+    ['Good teams ship good things.', 'Clubs taught me to organise a crowd.', 'Leadership is mostly listening.'],
+    ['Say hi. I’m friendly!', 'Email me. I reply fast. Usually.', 'Copy my email, then say hello. 💌']
+  ];
+  const pickLine = list => list[Math.floor(Math.random() * list.length)];
   (function idleTick() {
-    if (!paused && !document.hidden && performance.now() - lastInput > 7000 && !avatar.isBusy(performance.now())) avatar.play(idle[Math.floor(Math.random() * idle.length)]);
+    const now = performance.now();
+    if (!paused && !document.hidden && now - lastInput > 7000 && !avatar.isBusy(now)) {
+      if (Math.random() < .35 && CHATTER[arrived]) avatar.chatter(CHATTER[arrived]);
+      else avatar.play(pickLine(idle));
+    }
     setTimeout(idleTick, 9000 + Math.random() * 6000);
   })();
+  // Little reactions to what the visitor does with the page.
+  let lastScrollY = scrollY, lastScrollAt = performance.now(), lastRemark = 0, hiddenAt = 0;
+  addEventListener('scroll', () => {
+    const now = performance.now(), speed = Math.abs(scrollY - lastScrollY) / Math.max(16, now - lastScrollAt);
+    lastScrollY = scrollY; lastScrollAt = now;
+    if (speed > 6 && now - lastRemark > 14000 && !paused) { lastRemark = now; avatar.chatter(['Whoa, slow down! I can’t keep up!', 'Easy! I’m wearing a cape here.', 'Speed scrolling detected. 👀']); }
+  }, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { hiddenAt = performance.now(); return; }
+    if (hiddenAt && performance.now() - hiddenAt > 12000 && !paused) { avatar.play('wave', false); say(pickLine(['Oh, you’re back! 👀', 'Missed you! Welcome back. 👋', 'Back from the other tab? I waited!'])); }
+  });
+  if (!paused) setTimeout(() => { if (performance.now() - lastInput > 4000 && !avatar.isBusy(performance.now())) say('Tip: click me, double-click me, or try the buttons below. ⚡', 5200); }, 12000);
   canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); fail(); });
 
   measure(); applyTheme(dayK = targetDay());
-  root.classList.add('world-ready');
-  setTimeout(() => say('Hi, I’m Faiaz! Scroll and I’ll show you around. 👋', 4800), 1400);
-  requestAnimationFrame(frame);
-}
+  const reveal = Math.max(0, INTRO_MIN_MS - performance.now());
+  setTimeout(() => root.classList.add('world-ready'), reveal);
+  setTimeout(() => say('Hi, I’m Faiaz! Scroll and I’ll show you around. 👋', 4800), reveal + 1400);
+  requestAnimationFrame(frame);}
 
 start();
