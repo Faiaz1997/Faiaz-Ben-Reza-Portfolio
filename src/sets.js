@@ -1,4 +1,6 @@
 import portraitUrl from './portrait.jpg?url';
+import reliefUrl from './warrior_portrait_relief.glb?url';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 /* The set pieces of the portfolio world: one station per section, laid out along the x axis. */
 export const SPACING = 17;
 const C = { blue: '#3b63ff', lime: '#d8f55a', coral: '#ff8a5c', violet: '#8b6bff', white: '#f4f6ff', navy: '#141b3f', ink: '#0c1233', teal: '#3fd6c4', cyan: '#35e6ff' };
@@ -164,8 +166,16 @@ export function createSets(THREE) {
       const k = Math.max(480 / img.width, 660 / img.height); ctx.drawImage(img, (480 - img.width * k) / 2, 0, img.width * k, img.height * k);
       const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; photoMat.map = t; photoMat.color.set('#ffffff'); photoMat.needsUpdate = true;
     }; img.src = portraitUrl;
-    const scan = add(new THREE.PlaneGeometry(1.75, .07), glow(C.cyan, { transparent: true, opacity: .75, blending: THREE.AdditiveBlending, depthWrite: false }), photo, [0, 0, .09]);
-    [[-1, 1], [1, 1], [-1, -1], [1, -1]].forEach(([sx, sy]) => { add(new THREE.BoxGeometry(.3, .035, .02), glow(C.cyan), photo, [sx * .8, .12 + sy * 1.2, .09]); add(new THREE.BoxGeometry(.035, .3, .02), glow(C.cyan), photo, [sx * .86, .12 + sy * 1.1, .09]); });
+    // The 3D relief of the portrait replaces the flat photo once it has loaded; the flat plane stays as the click target and the fallback.
+    const relief = new THREE.Group(); relief.position.set(0, .12, .07); photo.add(relief);
+    new GLTFLoader().load(reliefUrl, (gltf) => {
+      const model = gltf.scene; model.scale.set(.0157, .0157, .0105); relief.add(model);
+      model.traverse((o) => { if (o.isMesh) { const m = o.material; m.emissiveMap = m.map; m.emissive = new THREE.Color('#ffffff'); m.emissiveIntensity = .5; m.roughness = .7; m.metalness = .05; } });
+      photoMat.transparent = true; photoMat.opacity = 0; photoMat.depthWrite = false; photoMat.needsUpdate = true;
+      dispatchEvent(new CustomEvent('faiaz:ui', { detail: { type: 'model' } }));
+    }, undefined, (error) => console.warn('Could not load the portrait relief', error));
+    const scan = add(new THREE.PlaneGeometry(1.75, .07), glow(C.cyan, { transparent: true, opacity: .75, blending: THREE.AdditiveBlending, depthWrite: false }), photo, [0, 0, .26]);
+    [[-1, 1], [1, 1], [-1, -1], [1, -1]].forEach(([sx, sy]) => { add(new THREE.BoxGeometry(.3, .035, .02), glow(C.cyan), photo, [sx * .8, .12 + sy * 1.2, .26]); add(new THREE.BoxGeometry(.035, .3, .02), glow(C.cyan), photo, [sx * .86, .12 + sy * 1.1, .26]); });
     const bulbs = []; const n = 15;
     for (let i = 0; i < n; i++) {
       const u = i / (n - 1), x = -3.6 + u * 7.4, y = 4.7 - Math.sin(u * Math.PI) * .9;
@@ -230,7 +240,7 @@ export function createSets(THREE) {
     const stops = [
       ['2024', 'Smart Software', 'Laravel Intern', 'PHP · Laravel · MySQL', -1.25, 1.0, 0x8b6bff],
       ['2025', 'Rain71', 'Marketing Business Analyst', 'Remote · Michigan, USA', -.75, 2.15, 0x35e6ff],
-      ['NOW', 'Brain Station 23', 'BA I · Product Owner', 'SalesPro23 · Dhaka', -.25, 3.3, 0xd8f55a]
+      ['NOW', 'Brain Station 23', 'BA · Product Owner', 'SalesPro23 · Dhaka', -.25, 3.3, 0xd8f55a]
     ];
     const W = 1.85, plates = [], hits = [], gems = [], glows = [];
     stops.forEach(([year, company, role, where, x, y, color], i) => {

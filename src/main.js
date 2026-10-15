@@ -500,8 +500,19 @@ function start() {
   function placeBubble() {
     avatar.headWorld(headPoint); headPoint.project(camera);
     const rect = canvas.getBoundingClientRect();
-    const x = clamp((headPoint.x * .5 + .5) * rect.width + rect.left, 110, innerWidth - 110), y = Math.max(86, (-headPoint.y * .5 + .5) * rect.height + rect.top - 18);
-    bubble.style.transform = `translate(${x}px, ${y}px) translate(-50%, -100%)`;
+    const hx = (headPoint.x * .5 + .5) * rect.width + rect.left, hy = (-headPoint.y * .5 + .5) * rect.height + rect.top;
+    const barBottom = (parseFloat(getComputedStyle(root).getPropertyValue('--bar')) || 72) + 6;
+    // Above the head if the whole bubble clears the header; otherwise beside the head, on whichever side has more room.
+    bubble.classList.remove('side-left', 'side-right'); bubble.style.maxWidth = '';
+    if (hy - 18 - bubble.offsetHeight >= barBottom) {
+      bubble.style.transform = `translate(${clamp(hx, 110, innerWidth - 110)}px, ${hy - 18}px) translate(-50%, -100%)`;
+      return;
+    }
+    const gap = 46, room = [hx - gap - 10, innerWidth - hx - gap - 10], left = room[0] >= room[1];
+    bubble.style.maxWidth = `${Math.max(120, Math.min(250, room[left ? 0 : 1]))}px`;
+    bubble.classList.add(left ? 'side-left' : 'side-right');
+    const y = Math.max(barBottom + bubble.offsetHeight / 2, hy + 30), x = hx + (left ? -gap : gap);
+    bubble.style.transform = `translate(${x}px, ${y}px) translate(${left ? '-100%' : '0'}, -50%)`;
   }
 
   // ---- interaction ------------------------------------------------------------------

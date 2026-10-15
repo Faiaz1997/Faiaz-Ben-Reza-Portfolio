@@ -224,6 +224,8 @@ footer a { text-decoration: none; }
 .tray .motion[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); opacity: 1; }
 .bubble { position: fixed; left: 0; top: 0; z-index: 45; width: max-content; max-width: 250px; padding: 11px 16px; background: #f7f8ee; color: #0b1233; border-radius: 18px; font: 700 13.5px/1.4 var(--body); text-align: center; box-shadow: 0 12px 34px rgba(3, 6, 28, .4); opacity: 0; pointer-events: none; transition: opacity .25s; will-change: transform; }
 .bubble::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 13px; height: 13px; background: inherit; transform: translateX(-50%) rotate(45deg); border-radius: 3px; }
+.bubble.side-left::after { left: auto; right: -6px; bottom: auto; top: 50%; transform: translateY(-50%) rotate(45deg); }
+.bubble.side-right::after { left: -6px; bottom: auto; top: 50%; transform: translateY(-50%) rotate(45deg); }
 .bubble.is-visible { opacity: 1; }
 
 .no-world #world, .no-world .tray, .no-world .bubble { display: none; }
